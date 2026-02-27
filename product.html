@@ -14,16 +14,22 @@ a.back{display:inline-block;margin-bottom:30px;color:#d4af37;font-weight:600;}
 .product-left{flex:1;min-width:300px;position:relative;}
 .category-badge{position:absolute;top:10px;left:10px;background:#d4af37;color:white;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;z-index:2;}
 .product-left img{width:100%;border-radius:12px;display:block;}
+.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.9);padding:8px 12px;border-radius:50%;cursor:pointer;font-size:20px;font-weight:600;user-select:none;box-shadow:0 4px 14px rgba(0,0,0,.15);}
+.left-arrow{left:10px;}
+.right-arrow{right:10px;}
 .product-right{flex:1;min-width:300px;display:flex;flex-direction:column;gap:20px;max-height:500px;}
 .product-right h1{margin:0;color:#d4af37;font-size:32px;}
 .product-right p{color:#555;line-height:1.6;overflow:hidden;position:relative;}
 .product-right p.expanded{max-height:none;}
 .read-more{color:#d4af37;font-weight:600;cursor:pointer;}
-.btn{background:#25D366;color:white;padding:12px 20px;border-radius:8px;font-weight:600;cursor:pointer;text-align:center;display:inline-block;width:fit-content;}
+.btn{padding:12px 20px;border-radius:8px;font-weight:600;cursor:pointer;text-align:center;display:inline-block;width:fit-content;text-decoration:none;}
+.btn.gold{background:#d4af37;color:white;}
+.btn.green{background:#25D366;color:white;}
 .sticky-btns{margin-top:auto;display:flex;gap:15px;flex-wrap:wrap;}
 @media(max-width:768px){
  .product-container{flex-direction:column;}
  .product-right{max-height:none;}
+ .slider-arrow{padding:6px 10px;font-size:18px;}
 }
 </style>
 </head>
@@ -35,14 +41,16 @@ a.back{display:inline-block;margin-bottom:30px;color:#d4af37;font-weight:600;}
  <div class="product-left" id="product-left">
    <div class="category-badge" id="category"></div>
    <img id="product-img" src="" alt="Ürün">
+   <div class="slider-arrow left-arrow" id="prev">&#10094;</div>
+   <div class="slider-arrow right-arrow" id="next">&#10095;</div>
  </div>
  <div class="product-right" id="product-right">
    <h1 id="product-name"></h1>
    <p id="product-desc"></p>
    <span class="read-more" id="read-more">Daha Fazlası...</span>
    <div class="sticky-btns">
-     <a id="whatsapp1" class="btn" target="_blank">WhatsApp ile Teklif Al</a>
-     <a id="whatsapp2" class="btn" target="_blank">WhatsApp ile Teklif Al</a>
+     <a id="whatsapp1" class="btn gold" target="_blank">Teklif Al</a>
+     <a id="whatsapp2" class="btn green" target="_blank">WhatsApp İletişim</a>
    </div>
  </div>
 </div>
@@ -50,8 +58,15 @@ a.back{display:inline-block;margin-bottom:30px;color:#d4af37;font-weight:600;}
 <script>
 // Ürünler
 const products=[
- {id:1,name:"AeroPods X",cat:"KULAKLIK",img:"https://images.unsplash.com/photo-1585386959984-a4155224a1ad",desc:"Aktif gürültü engelleme ve uzun pil ömrü ile premium bir kulaklık deneyimi sunar. Bluetooth 5.2 ile hızlı bağlantı, ergonomik tasarım ve yüksek kaliteli ses performansı sağlar. Gürültü engelleme modları sayesinde tüm ortam seslerini kontrol edebilirsiniz. Dahili mikrofon ve kontrol tuşlarıyla rahat kullanım. Kendi kulak pedleri değiştirilebilir ve taşıma çantası ile birlikte gelir."},
- {id:2,name:"Nova Watch Pro",cat:"AKILLI SAAT",img:"https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1",desc:"Amoled ekran, uzun pil ömrü ve sağlık takip özellikleri ile öne çıkan bir akıllı saat. Nabız ölçer, uyku takibi, adım sayacı ve spor modları bulunur. Suya dayanıklı gövdesi sayesinde her ortamda güvenle kullanılabilir. Bildirimleri telefon ile senkronize edebilir, müzik kontrolünü kolaylıkla yapabilirsiniz."},
+ {id:1,name:"AeroPods X",cat:"KULAKLIK",images:[
+   "https://images.unsplash.com/photo-1585386959984-a4155224a1ad",
+   "https://images.unsplash.com/photo-1599058917210-5b6d1212e2b1",
+   "https://images.unsplash.com/photo-1600185369831-9d3e01b7b0a0"
+ ],desc:"Aktif gürültü engelleme ve uzun pil ömrü ile premium bir kulaklık deneyimi sunar. Bluetooth 5.2 ile hızlı bağlantı, ergonomik tasarım ve yüksek kaliteli ses performansı sağlar. Gürültü engelleme modları sayesinde tüm ortam seslerini kontrol edebilirsiniz. Dahili mikrofon ve kontrol tuşlarıyla rahat kullanım. Kendi kulak pedleri değiştirilebilir ve taşıma çantası ile birlikte gelir."},
+ {id:2,name:"Nova Watch Pro",cat:"AKILLI SAAT",images:[
+   "https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1",
+   "https://images.unsplash.com/photo-1549924231-f129b911e442"
+ ],desc:"Amoled ekran, uzun pil ömrü ve sağlık takip özellikleri ile öne çıkan bir akıllı saat. Nabız ölçer, uyku takibi, adım sayacı ve spor modları bulunur. Suya dayanıklı gövdesi sayesinde her ortamda güvenle kullanılabilir. Bildirimleri telefon ile senkronize edebilir, müzik kontrolünü kolaylıkla yapabilirsiniz."},
 ];
 
 // URL param
@@ -59,14 +74,29 @@ const params = new URLSearchParams(window.location.search);
 const id = parseInt(params.get("id"));
 const p = products.find(x=>x.id===id);
 
+let imgIndex = 0;
+
 if(p){
- document.getElementById("product-img").src = p.img;
+ document.getElementById("product-img").src = p.images[imgIndex];
  document.getElementById("product-name").innerText = p.name;
  document.getElementById("product-desc").innerText = p.desc;
  document.getElementById("category").innerText = p.cat;
+
  const whatsappLink = "https://wa.me/905000000000?text=" + encodeURIComponent("Merhaba, "+p.name+" için teklif almak istiyorum.");
  document.getElementById("whatsapp1").href = whatsappLink;
  document.getElementById("whatsapp2").href = whatsappLink;
+
+ // Slider okları
+ const prevBtn = document.getElementById("prev");
+ const nextBtn = document.getElementById("next");
+ prevBtn.addEventListener("click", ()=>{
+   imgIndex = (imgIndex-1+p.images.length)%p.images.length;
+   document.getElementById("product-img").src = p.images[imgIndex];
+ });
+ nextBtn.addEventListener("click", ()=>{
+   imgIndex = (imgIndex+1)%p.images.length;
+   document.getElementById("product-img").src = p.images[imgIndex];
+ });
 }else{
  document.getElementById("product-left").innerHTML = "<p>Ürün bulunamadı.</p>";
  document.getElementById("product-right").innerHTML = "";
