@@ -13,66 +13,83 @@
 :root{
   --gold:#d4af37;
   --black:#111;
-  --soft:#f5f5f5;
+  --soft:#f6f6f6;
   --gray:#777;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Poppins,sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
 
-body{
-  background:white;
-  color:var(--black);
-  overflow-x:hidden;
-}
+body{background:white;color:var(--black);overflow-x:hidden}
 
 /* NAV */
 
 nav{
   position:fixed;
   width:100%;
-  height:80px;
   background:white;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 70px;
   border-bottom:1px solid #eee;
   z-index:1000;
 }
 
-.logo{
-  height:48px;
-}
-
-nav ul{
+.nav-top{
+  height:80px;
   display:flex;
-  gap:35px;
-  list-style:none;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 60px;
 }
 
-nav a{
+.logo{height:46px}
+
+.nav-links{
+  display:flex;
+  gap:28px;
+}
+
+.nav-links a{
   text-decoration:none;
   color:#333;
   font-size:14px;
-  transition:.3s;
+  font-weight:500;
 }
 
-nav a:hover{
-  color:var(--gold);
+.nav-links a:hover{color:var(--gold)}
+
+/* CATEGORY BAR */
+
+.category-bar{
+  display:flex;
+  gap:12px;
+  overflow:auto;
+  padding:14px 40px;
+  background:var(--soft);
 }
 
-/* HERO SLIDER */
-
-.hero{
-  height:100vh;
+.cat-btn{
   display:flex;
   align-items:center;
-  justify-content:center;
+  gap:8px;
+  padding:10px 18px;
+  border-radius:12px;
+  background:white;
+  border:1px solid #e5e5e5;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:.3s;
+  font-size:13px;
+}
+
+.cat-btn:hover{
+  border-color:var(--gold);
+  color:var(--gold);
+  transform:translateY(-2px);
+}
+
+/* HERO */
+
+.hero{
+  margin-top:130px;
+  height:70vh;
   position:relative;
   overflow:hidden;
 }
@@ -84,166 +101,124 @@ nav a:hover{
   background-size:cover;
   background-position:center;
   opacity:0;
-  transition:1s ease;
-  cursor:pointer;
+  transition:1s;
 }
 
-.slide.active{
-  opacity:1;
-}
+.slide.active{opacity:1}
 
 .hero-text{
   position:absolute;
-  z-index:2;
-  text-align:center;
-}
-
-.hero-text h1{
-  font-size:64px;
-  letter-spacing:4px;
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:56px;
   font-weight:700;
 }
 
-.hero-text span{
-  color:var(--gold);
-}
-
-/* ARROWS */
+.hero-text span{color:var(--gold)}
 
 .arrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  font-size:22px;
-  padding:8px 14px;
-  border-radius:50%;
   background:white;
-  box-shadow:0 4px 14px rgba(0,0,0,.15);
+  padding:8px 12px;
+  border-radius:50%;
   cursor:pointer;
-  user-select:none;
-  z-index:3;
+  box-shadow:0 4px 14px rgba(0,0,0,.15);
 }
 
-.left{ left:30px }
-.right{ right:30px }
+.left{left:20px}
+.right{right:20px}
 
-/* SECTIONS */
+/* SECTION */
 
-section{
-  padding:120px 10%;
-}
+section{padding:90px 10%}
 
 .title{
+  font-size:32px;
   text-align:center;
-  margin-bottom:60px;
-  font-size:34px;
   color:var(--gold);
-}
-
-/* FILTER */
-
-.filters{
-  text-align:center;
-  margin-bottom:40px;
-}
-
-.filters button{
-  padding:10px 20px;
-  margin:5px;
-  border:1px solid var(--gold);
-  background:none;
-  color:var(--gold);
-  cursor:pointer;
-  transition:.3s;
-}
-
-.filters button:hover{
-  background:var(--gold);
-  color:white;
+  margin-bottom:50px;
 }
 
 /* GRID */
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-  gap:40px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
 }
-
-/* CARD */
 
 .card{
   background:white;
   border-radius:18px;
   overflow:hidden;
   box-shadow:0 10px 30px rgba(0,0,0,.07);
-  transition:.4s;
-  transform:translateY(40px);
-  opacity:0;
-}
-
-.card.show{
-  transform:translateY(0);
-  opacity:1;
+  cursor:pointer;
+  transition:.35s;
 }
 
 .card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 18px 40px rgba(0,0,0,.15);
+  transform:translateY(-6px);
+  box-shadow:0 20px 40px rgba(0,0,0,.15);
 }
 
 .card img{
   width:100%;
-  height:240px;
+  height:220px;
   object-fit:cover;
 }
 
 .card .content{
-  padding:22px;
+  padding:18px;
 }
 
-.card h4{
-  margin-bottom:6px;
-}
+.card h4{margin-bottom:6px}
+.card p{font-size:13px;color:var(--gray)}
 
-.card p{
-  color:var(--gray);
-  font-size:14px;
-  margin-bottom:12px;
-}
-
-/* WHATSAPP */
-
-.wa-btn{
+.wa{
   display:inline-block;
-  padding:8px 14px;
+  margin-top:10px;
+  padding:7px 12px;
   background:#25D366;
   color:white;
-  font-size:13px;
   border-radius:8px;
+  font-size:12px;
   text-decoration:none;
 }
 
-/* FOOTER */
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal-box{
+  background:white;
+  max-width:520px;
+  padding:30px;
+  border-radius:16px;
+}
+
+.modal img{
+  width:100%;
+  margin-bottom:20px;
+}
 
 footer{
   background:var(--soft);
-  text-align:center;
   padding:40px;
+  text-align:center;
   color:#777;
-}
-
-/* FADE ANIMATION */
-
-.fade{
-  opacity:0;
-  transform:translateY(50px);
-  transition:1s;
-}
-
-.fade.show{
-  opacity:1;
-  transform:translateY(0);
 }
 
 </style>
@@ -251,50 +226,56 @@ footer{
 
 <body>
 
-
 <nav>
-  <img src="logo.png" class="logo">
-  <ul>
-    <li><a href="#urunler">Ürünler</a></li>
-    <li><a href="#iletisim">İletişim</a></li>
-  </ul>
+
+  <div class="nav-top">
+    <img src="logo.png" class="logo">
+
+    <div class="nav-links">
+      <a href="#new">NEW</a>
+      <a href="#about">Hakkımızda</a>
+      <a href="#iletisim">İletişim</a>
+    </div>
+  </div>
+
+  <div class="category-bar" id="cats"></div>
+
 </nav>
 
 
-<!-- HERO -->
 
 <section class="hero">
 
-  <div class="slide active" style="background:url('https://images.unsplash.com/photo-1518770660439-4636190af475')"></div>
-  <div class="slide" style="background:url('https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1')"></div>
-  <div class="slide" style="background:url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9')"></div>
+<div class="slide active" style="background:url('https://images.unsplash.com/photo-1518770660439-4636190af475')"></div>
+<div class="slide" style="background:url('https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1')"></div>
+<div class="slide" style="background:url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9')"></div>
 
-  <div class="hero-text">
-    <h1><span>MARLA</span> TECH</h1>
-  </div>
+<div class="hero-text"><span>MARLA</span>&nbsp;TECH</div>
 
-  <div class="arrow left" onclick="prev()">‹</div>
-  <div class="arrow right" onclick="next()">›</div>
+<div class="arrow left" onclick="prev()">‹</div>
+<div class="arrow right" onclick="next()">›</div>
 
 </section>
 
 
-<!-- PRODUCTS -->
 
-<section id="urunler">
+<section id="products">
 
-<h2 class="title fade">ÜRÜNLER</h2>
-
-<div class="filters fade">
-  <button onclick="filter('all')">Tümü</button>
-  <button onclick="filter('kulaklık')">Kulaklık</button>
-  <button onclick="filter('saat')">Saat</button>
-  <button onclick="filter('aksesuar')">Aksesuar</button>
-</div>
-
+<h2 class="title">ÜRÜNLER</h2>
 <div class="grid" id="grid"></div>
 
 </section>
+
+
+
+<section id="about">
+<h2 class="title">Hakkımızda</h2>
+<p style="max-width:800px;margin:auto;text-align:center;color:#666">
+MARLA TECH olarak global üreticilerden yüksek kalite elektronik ürünleri ithal ederek
+Türkiye ve Avrupa pazarına premium standartlarda sunuyoruz. Güvenilir tedarik, modern tasarım ve sürdürülebilir teknoloji odaklı çalışıyoruz.
+</p>
+</section>
+
 
 
 <footer id="iletisim">
@@ -303,9 +284,81 @@ footer{
 
 
 
+<div class="modal" id="modal" onclick="this.style.display='none'">
+  <div class="modal-box" id="modalBox"></div>
+</div>
+
+
+
 <script>
 
+/* CATEGORIES */
+
+const categories=[
+"🎧 KULAKLIK",
+"⌚ AKILLI SAAT",
+"📽 PROJEKSİYON CİHAZI",
+"💧 ORTAM NEMLENDİRİCİ",
+"🔋 POWERBANK",
+"📷 KAMERA",
+"🔊 HOPARLÖR",
+"🚗 ARAÇ TEKNOLOJİSİ",
+"🏍 MOTOR TEKNOLOJİSİ",
+"🏠 EV TEKNOLOJİSİ",
+"🎁 HEDİYELİK ÜRÜNLER"
+];
+
+categories.forEach(c=>{
+  cats.innerHTML+=`<div class="cat-btn" onclick="filter('${c.split(' ')[1]}')">${c}</div>`
+});
+
+
+/* PRODUCTS */
+
+const products=[
+ {name:"AeroPods X",cat:"KULAKLIK",img:"https://images.unsplash.com/photo-1585386959984-a4155224a1ad",desc:"Aktif gürültü engelleme ve 30 saat pil ömrü."},
+ {name:"Nova Watch Pro",cat:"AKILLI",img:"https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1",desc:"Amoled ekran, sağlık takibi, premium kasa."},
+ {name:"MiniBeam 4K",cat:"PROJEKSİYON",img:"https://images.unsplash.com/photo-1509395176047-4a66953fd231",desc:"Taşınabilir 4K projeksiyon deneyimi."},
+ {name:"MaxCharge 20K",cat:"POWERBANK",img:"https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04",desc:"20.000mAh hızlı şarj teknolojisi."}
+];
+
+function render(list){
+  grid.innerHTML="";
+  list.forEach(p=>{
+    grid.innerHTML+=`
+    <div class="card" onclick='detail(${JSON.stringify(p)})'>
+      <img src="${p.img}">
+      <div class="content">
+        <h4>${p.name}</h4>
+        <p>${p.desc}</p>
+        <a class="wa" href="https://wa.me/905000000000" target="_blank">WhatsApp Teklif</a>
+      </div>
+    </div>`;
+  });
+}
+
+render(products);
+
+function filter(cat){
+  render(products.filter(p=>p.cat.includes(cat)));
+}
+
+
+/* DETAIL */
+
+function detail(p){
+  modal.style.display="flex";
+  modalBox.innerHTML=`
+    <img src="${p.img}">
+    <h3>${p.name}</h3>
+    <p>${p.desc} Profesyonel ithalat garantisi ve toptan satış avantajı.</p>
+    <a class="wa" href="https://wa.me/905000000000">WhatsApp Teklif Al</a>
+  `;
+}
+
+
 /* SLIDER */
+
 let slides=document.querySelectorAll(".slide");
 let i=0;
 
@@ -314,58 +367,9 @@ function show(n){
   slides[n].classList.add("active");
 }
 
-function next(){
-  i=(i+1)%slides.length;
-  show(i);
-}
-
-function prev(){
-  i=(i-1+slides.length)%slides.length;
-  show(i);
-}
-
+function next(){i=(i+1)%slides.length;show(i)}
+function prev(){i=(i-1+slides.length)%slides.length;show(i)}
 setInterval(next,5000);
-slides.forEach(s=>s.onclick=next);
-
-
-/* PRODUCTS */
-const products=[
- {name:"Bluetooth Kulaklık",cat:"kulaklık",img:"https://images.unsplash.com/photo-1585386959984-a4155224a1ad",desc:"Kablosuz yüksek kalite ses"},
- {name:"Akıllı Saat",cat:"saat",img:"https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1",desc:"Amoled premium ekran"},
- {name:"Şarj Adaptörü",cat:"aksesuar",img:"https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04",desc:"Fast charge teknoloji"}
-];
-
-function render(list){
-  grid.innerHTML="";
-  list.forEach(p=>{
-    grid.innerHTML+=`
-      <div class="card fade">
-        <img src="${p.img}">
-        <div class="content">
-          <h4>${p.name}</h4>
-          <p>${p.desc}</p>
-          <a class="wa-btn" href="https://wa.me/905000000000?text=Merhaba ${p.name} hakkında bilgi alabilir miyim?" target="_blank">WhatsApp Teklif Al</a>
-        </div>
-      </div>`;
-  });
-  reveal();
-}
-
-function filter(cat){
-  if(cat==="all") render(products);
-  else render(products.filter(p=>p.cat===cat));
-}
-
-render(products);
-
-
-/* ANIMATION */
-function reveal(){
-  const obs=new IntersectionObserver(e=>{
-    e.forEach(i=>{ if(i.isIntersecting) i.target.classList.add("show") })
-  },{threshold:.2});
-  document.querySelectorAll(".fade,.card").forEach(el=>obs.observe(el));
-}
 
 </script>
 
