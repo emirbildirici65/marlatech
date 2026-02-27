@@ -3,287 +3,55 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
 <title>MARLA TECH | Premium Electronics</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <style>
-
 :root{
  --gold:#d4af37;
  --black:#111;
  --soft:#f6f6f6;
  --gray:#777;
 }
-
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
 body{background:white;color:var(--black)}
-
-/* ================= HEADER ================= */
-
-nav{
- position:fixed;
- top:0;
- left:0;
- width:100%;
- height:80px;
- background:white;
- border-bottom:1px solid #eee;
- z-index:9999;
-}
-
-.nav-inner{
- height:100%;
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:0 70px;
-}
-
-/* LOGO büyütüldü + tıklanabilir */
-.logo{
- height:54px;
- cursor:pointer;
-}
-
-.menu{
- display:flex;
- gap:40px;
- align-items:center;
-}
-
-.menu-item{
- position:relative;
- font-size:14px;
- font-weight:500;
- cursor:pointer;
- padding-bottom:20px; /* dropdown gap fix */
-}
-
+nav{position:fixed;top:0;left:0;width:100%;height:80px;background:white;border-bottom:1px solid #eee;z-index:9999;}
+.nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 70px;}
+.logo{height:54px;cursor:pointer;}
+.menu{display:flex;gap:40px;align-items:center;}
+.menu-item{position:relative;font-size:14px;font-weight:500;cursor:pointer;padding-bottom:20px;}
 .menu-item:hover{color:var(--gold)}
-
-/* ===== DROPDOWN FIX (kapanma sorunu çözüldü) ===== */
-
-.dropdown{
- position:absolute;
- top:38px;
- left:0;
- width:260px;
- max-height:240px;
- overflow-y:auto;
- background:white;
- border-radius:12px;
- box-shadow:0 10px 30px rgba(0,0,0,.15);
- padding:8px 0;
- display:none;
-}
-
-.menu-item:hover .dropdown,
-.dropdown:hover{
- display:block;
-}
-
-.dropdown div{
- padding:10px 16px;
- font-size:13px;
- cursor:pointer;
-}
-
-.dropdown div:hover{
- background:var(--soft);
- color:var(--gold);
-}
-
-/* ===== CONTENT OFFSET ===== */
-
-main{
- padding-top:80px;
-}
-
-/* ================= HERO ================= */
-
-.hero{
- height:75vh;
- position:relative;
- overflow:hidden;
-}
-
-.slide{
- position:absolute;
- width:100%;
- height:100%;
- background-size:cover;
- background-position:center;
- opacity:0;
- transition:1s;
-}
-
+.dropdown{position:absolute;top:38px;left:0;width:260px;max-height:240px;overflow-y:auto;background:white;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.15);padding:8px 0;display:none;}
+.menu-item:hover .dropdown,.dropdown:hover{display:block;}
+.dropdown div{padding:10px 16px;font-size:13px;cursor:pointer;}
+.dropdown div:hover{background:var(--soft);color:var(--gold);}
+main{padding-top:80px;}
+.hero{height:75vh;position:relative;overflow:hidden;}
+.slide{position:absolute;width:100%;height:100%;background-size:cover;background-position:center;opacity:0;transition:1s;}
 .slide.active{opacity:1}
-
-/* ortalama + logo */
-.hero-text{
- position:absolute;
- inset:0;
- display:flex;
- align-items:center;
- justify-content:center;
- flex-direction:column;
- gap:20px;
- font-size:60px;
- font-weight:700;
- text-align:center;
-}
-
-.hero-text img{
- height:95px;
-}
-
+.hero-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;font-size:60px;font-weight:700;text-align:center;}
+.hero-text img{height:95px;}
 .hero-text span{color:var(--gold)}
-
-.arrow{
- position:absolute;
- top:50%;
- transform:translateY(-50%);
- background:white;
- padding:8px 12px;
- border-radius:50%;
- cursor:pointer;
- box-shadow:0 4px 14px rgba(0,0,0,.15);
-}
-
+.arrow{position:absolute;top:50%;transform:translateY(-50%);background:white;padding:8px 12px;border-radius:50%;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15);}
 .left{left:20px}
-.right{right:20px}
-
-/* ================= SECTIONS ================= */
-
+.right{right:20px;}
 section{padding:100px 10%}
-
-.title{
- text-align:center;
- font-size:32px;
- margin-bottom:50px;
- color:var(--gold);
-}
-
-/* ================= PRODUCTS ================= */
-
-.grid{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
- gap:30px;
-}
-
-.card{
- background:white;
- border-radius:18px;
- overflow:hidden;
- box-shadow:0 10px 30px rgba(0,0,0,.07);
- cursor:pointer;
- transition:.35s;
-}
-
-.card:hover{
- transform:translateY(-6px);
- box-shadow:0 20px 40px rgba(0,0,0,.15);
-}
-
-.card img{
- width:100%;
- height:220px;
- object-fit:cover;
-}
-
+.title{text-align:center;font-size:32px;margin-bottom:50px;color:var(--gold);}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;}
+.card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.07);cursor:pointer;transition:.35s;}
+.card img{width:100%;height:220px;object-fit:cover}
 .content{padding:18px}
-
 .card p{font-size:13px;color:var(--gray)}
-
-.wa{
- display:inline-block;
- margin-top:10px;
- padding:7px 12px;
- background:#25D366;
- color:white;
- border-radius:8px;
- font-size:12px;
- text-decoration:none;
-}
-
-/* ================= MODAL (küçültüldü) ================= */
-
-.modal{
- position:fixed;
- inset:0;
- background:rgba(0,0,0,.7);
- display:none;
- align-items:center;
- justify-content:center;
-}
-
-.modal-box{
- background:white;
- padding:30px;
- border-radius:16px;
- max-width:520px;
- width:90%;
-}
-
-/* ================= ABOUT ================= */
-
-.about-logo{
- display:block;
- margin:40px auto;
- width:380px; /* 10x büyük */
-}
-
-/* ================= CONTACT ================= */
-
-.contact{
- background:var(--soft);
-}
-
-.contact-wrapper{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:60px;
- max-width:1100px;
- margin:auto;
-}
-
-.contact-info p{
- margin-bottom:10px;
- color:#555;
-}
-
-form input, form textarea{
- width:100%;
- padding:12px;
- margin-bottom:12px;
- border:1px solid #ddd;
- border-radius:8px;
-}
-
-form button{
- background:var(--gold);
- border:none;
- padding:12px;
- width:100%;
- border-radius:8px;
- cursor:pointer;
- color:white;
- font-weight:600;
-}
-
-footer{
- padding:30px;
- text-align:center;
- color:#777;
-}
-
-@media(max-width:768px){
- .contact-wrapper{grid-template-columns:1fr}
-}
-
+.wa{display:inline-block;margin-top:10px;padding:7px 12px;background:#25D366;color:white;border-radius:8px;font-size:12px;text-decoration:none;}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;}
+.modal-box{background:white;padding:30px;border-radius:16px;max-width:520px;width:90%;}
+.about-logo{display:block;margin:40px auto;width:380px;}
+.contact{background:var(--soft);}
+.contact-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1100px;margin:auto;}
+.contact-info p{margin-bottom:10px;color:#555;}
+form input, form textarea{width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;border-radius:8px;}
+form button{background:var(--gold);border:none;padding:12px;width:100%;border-radius:8px;cursor:pointer;color:white;font-weight:600;}
+footer{padding:30px;text-align:center;color:#777;}
+@media(max-width:768px){.contact-wrapper{grid-template-columns:1fr}}
 </style>
 </head>
 
@@ -291,107 +59,82 @@ footer{
 
 <nav>
  <div class="nav-inner">
-
   <img src="logo.png" class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-
   <div class="menu">
-
    <div class="menu-item">
     Kategoriler
     <div class="dropdown" id="dropdown"></div>
    </div>
-
    <div class="menu-item" onclick="showNew()">NEW</div>
    <div class="menu-item" onclick="scrollToAbout()">Hakkımızda</div>
    <div class="menu-item" onclick="scrollToContact()">İletişim</div>
-
   </div>
-
  </div>
 </nav>
 
 <main>
-
 <section class="hero">
-
  <div class="slide active" style="background:url('https://images.unsplash.com/photo-1518770660439-4636190af475')"></div>
  <div class="slide" style="background:url('https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1')"></div>
-
  <div class="hero-text">
   <img src="logo.png">
   <div><span>MARLA</span> TECH</div>
  </div>
-
  <div class="arrow left" onclick="prev()">‹</div>
  <div class="arrow right" onclick="next()">›</div>
-
 </section>
-
 
 <section id="products">
 <h2 class="title">ÜRÜNLER</h2>
 <div class="grid" id="grid"></div>
 </section>
 
-
 <section id="about">
 <h2 class="title">Hakkımızda</h2>
-
 <img src="logo.png" class="about-logo">
-
 <p style="max-width:800px;margin:auto;text-align:center;color:#666">
 MARLA TECH global elektronik ithalat ve toptan satış çözümleri sunar. Premium kalite, güvenilir tedarik ve modern teknoloji odaklıdır.
 </p>
 </section>
 
-
 <section id="contact" class="contact">
 <h2 class="title">İletişim</h2>
-
 <div class="contact-wrapper">
-
  <div class="contact-info">
   <p><b>MARLA TECH</b></p>
   <p>📍 İstanbul / Türkiye</p>
   <p>📞 +90 5XX XXX XX XX</p>
   <p>✉ info@marlatech.com</p>
  </div>
-
  <form action="mailto:info@marlatech.com" method="post" enctype="text/plain">
   <input placeholder="Ad Soyad" required>
   <input placeholder="Email" required>
   <textarea rows="5" placeholder="Mesajınız"></textarea>
   <button>Gönder</button>
  </form>
-
 </div>
 </section>
 
 <footer>© 2026 MARLA TECH</footer>
 
-</main>
-
-
-<div class="modal" id="modal" onclick="this.style.display='none'">
- <div class="modal-box" id="modalBox"></div>
-</div>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.0/gsap.min.js"></script>
 <script>
-
+// Kategoriler
 const cats=["KULAKLIK","AKILLI SAAT","PROJEKSİYON CİHAZI","ORTAM NEMLENDİRİCİ","POWERBANK","KAMERA","HOPARLÖR","ARAÇ TEKNOLOJİSİ","MOTOR TEKNOLOJİSİ","EV TEKNOLOJİSİ","HEDİYELİK ÜRÜNLER"];
 cats.forEach(c=> dropdown.innerHTML+=`<div onclick="filter('${c}')">${c}</div>`);
 
+// Ürünler
 const products=[
- {name:"AeroPods X",cat:"KULAKLIK",img:"https://images.unsplash.com/photo-1585386959984-a4155224a1ad",desc:"Aktif gürültü engelleme"},
- {name:"Nova Watch Pro",cat:"AKILLI SAAT",img:"https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1",desc:"Amoled ekran"},
+ {id:1,name:"AeroPods X",cat:"KULAKLIK",img:"https://images.unsplash.com/photo-1585386959984-a4155224a1ad",desc:"Aktif gürültü engelleme"},
+ {id:2,name:"Nova Watch Pro",cat:"AKILLI SAAT",img:"https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1",desc:"Amoled ekran"},
 ];
 
+// Render
 function render(list){
  grid.innerHTML="";
  list.forEach(p=>{
   grid.innerHTML+=`
-  <div class="card" onclick='detail(${JSON.stringify(p)})'>
+  <div class="card" onclick='detail(${p.id})'>
    <img src="${p.img}">
    <div class="content">
     <h4>${p.name}</h4>
@@ -400,28 +143,30 @@ function render(list){
    </div>
   </div>`;
  });
+
+ // GSAP animasyon
+ gsap.from(".card", {duration:0.8, opacity:0, y:50, stagger:0.15, ease:"power3.out"});
+ document.querySelectorAll(".card").forEach(card=>{
+   card.addEventListener("mouseenter", ()=> gsap.to(card, {scale:1.03, duration:0.3, ease:"power3.out"}));
+   card.addEventListener("mouseleave", ()=> gsap.to(card, {scale:1, duration:0.3, ease:"power3.out"}));
+ });
 }
 
 render(products);
-
 function filter(cat){ render(products.filter(p=>p.cat===cat)); }
+function detail(id){ window.location.href=`product.html?id=${id}`; }
 
-function detail(p){
- modal.style.display="flex";
- modalBox.innerHTML=`<img src="${p.img}" style="width:100%;border-radius:10px"><h3 style="margin-top:15px">${p.name}</h3><p>${p.desc}</p>`;
-}
-
-let slides=document.querySelectorAll(".slide");
-let i=0;
+// Hero slider
+let slides=document.querySelectorAll(".slide"); let i=0;
 function show(n){slides.forEach(s=>s.classList.remove("active"));slides[n].classList.add("active")}
 function next(){i=(i+1)%slides.length;show(i)}
 function prev(){i=(i-1+slides.length)%slides.length;show(i)}
 setInterval(next,5000);
 
+// Scroll
 function scrollToAbout(){about.scrollIntoView({behavior:"smooth"})}
 function scrollToContact(){contact.scrollIntoView({behavior:"smooth"})}
 function showNew(){render(products.slice(-1))}
-
 </script>
 
 </body>
