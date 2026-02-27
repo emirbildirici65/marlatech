@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "AeroPods X",
+    "desc": "Aktif gürültü engelleme ve uzun pil ömrü ile premium bir kulaklık deneyimi. Bluetooth 5.2 ile hızlı bağlantı, ergonomik tasarım ve yüksek kaliteli ses performansı sağlar.",
+    "category": "KULAKLIK",
+    "code": "APX-001",
+    "images": [
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Nova Watch Pro",
+    "desc": "Amoled ekran, uzun pil ömrü ve sağlık takip özellikleri ile öne çıkan bir akıllı saat. Nabız ölçer, uyku takibi ve spor modları bulunur.",
+    "category": "AKILLI SAAT",
+    "code": "NWP-001",
+    "images": [
+      "https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1"
+    ]
+  }
+]
