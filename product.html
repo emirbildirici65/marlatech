@@ -56,70 +56,70 @@ a.back{display:inline-block;margin-bottom:30px;color:#d4af37;font-weight:600;}
 </div>
 
 <script>
-// Ürünler
-const products=[
- {id:1,name:"AeroPods X",cat:"KULAKLIK",images:[
-   "https://images.unsplash.com/photo-1585386959984-a4155224a1ad",
-   "https://images.unsplash.com/photo-1599058917210-5b6d1212e2b1",
-   "https://images.unsplash.com/photo-1600185369831-9d3e01b7b0a0"
- ],desc:"Aktif gürültü engelleme ve uzun pil ömrü ile premium bir kulaklık deneyimi sunar. Bluetooth 5.2 ile hızlı bağlantı, ergonomik tasarım ve yüksek kaliteli ses performansı sağlar. Gürültü engelleme modları sayesinde tüm ortam seslerini kontrol edebilirsiniz. Dahili mikrofon ve kontrol tuşlarıyla rahat kullanım. Kendi kulak pedleri değiştirilebilir ve taşıma çantası ile birlikte gelir."},
- {id:2,name:"Nova Watch Pro",cat:"AKILLI SAAT",images:[
-   "https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1",
-   "https://images.unsplash.com/photo-1549924231-f129b911e442"
- ],desc:"Amoled ekran, uzun pil ömrü ve sağlık takip özellikleri ile öne çıkan bir akıllı saat. Nabız ölçer, uyku takibi, adım sayacı ve spor modları bulunur. Suya dayanıklı gövdesi sayesinde her ortamda güvenle kullanılabilir. Bildirimleri telefon ile senkronize edebilir, müzik kontrolünü kolaylıkla yapabilirsiniz."},
-];
+// JSON’dan ürünleri çek
+let products = [];
 
-// URL param
-const params = new URLSearchParams(window.location.search);
-const id = parseInt(params.get("id"));
-const p = products.find(x=>x.id===id);
+fetch('product.json')
+  .then(res => res.json())
+  .then(data => {
+    products = data;
+    initProduct();
+  })
+  .catch(err => console.error("Ürünler yüklenemedi:", err));
 
-let imgIndex = 0;
+function initProduct(){
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get("id"));
+  const p = products.find(x=>x.id===id);
 
-if(p){
- document.getElementById("product-img").src = p.images[imgIndex];
- document.getElementById("product-name").innerText = p.name;
- document.getElementById("product-desc").innerText = p.desc;
- document.getElementById("category").innerText = p.cat;
+  let imgIndex = 0;
 
- const whatsappLink = "https://wa.me/905000000000?text=" + encodeURIComponent("Merhaba, "+p.name+" için teklif almak istiyorum.");
- document.getElementById("whatsapp1").href = whatsappLink;
- document.getElementById("whatsapp2").href = whatsappLink;
+  if(p){
+    document.getElementById("product-img").src = p.images[imgIndex];
+    document.getElementById("product-name").innerText = p.name;
+    document.getElementById("product-desc").innerText = p.desc;
+    document.getElementById("category").innerText = p.cat;
 
- // Slider okları
- const prevBtn = document.getElementById("prev");
- const nextBtn = document.getElementById("next");
- prevBtn.addEventListener("click", ()=>{
-   imgIndex = (imgIndex-1+p.images.length)%p.images.length;
-   document.getElementById("product-img").src = p.images[imgIndex];
- });
- nextBtn.addEventListener("click", ()=>{
-   imgIndex = (imgIndex+1)%p.images.length;
-   document.getElementById("product-img").src = p.images[imgIndex];
- });
-}else{
- document.getElementById("product-left").innerHTML = "<p>Ürün bulunamadı.</p>";
- document.getElementById("product-right").innerHTML = "";
+    const whatsappLink = "https://wa.me/905000000000?text=" + encodeURIComponent("Merhaba, "+p.name+" için teklif almak istiyorum.");
+    document.getElementById("whatsapp1").href = whatsappLink;
+    document.getElementById("whatsapp2").href = whatsappLink;
+
+    // Slider okları
+    const prevBtn = document.getElementById("prev");
+    const nextBtn = document.getElementById("next");
+    prevBtn.addEventListener("click", ()=>{
+      imgIndex = (imgIndex-1+p.images.length)%p.images.length;
+      document.getElementById("product-img").src = p.images[imgIndex];
+    });
+    nextBtn.addEventListener("click", ()=>{
+      imgIndex = (imgIndex+1)%p.images.length;
+      document.getElementById("product-img").src = p.images[imgIndex];
+    });
+
+  }else{
+    document.getElementById("product-left").innerHTML = "<p>Ürün bulunamadı.</p>";
+    document.getElementById("product-right").innerHTML = "";
+  }
+
+  // Read More
+  const desc = document.getElementById("product-desc");
+  const readMore = document.getElementById("read-more");
+  let expanded = false;
+  readMore.addEventListener("click",()=>{
+    expanded = !expanded;
+    if(expanded){
+      desc.classList.add("expanded");
+      readMore.innerText = "Daha Az Göster";
+    }else{
+      desc.classList.remove("expanded");
+      readMore.innerText = "Daha Fazlası...";
+    }
+  });
+
+  // GSAP Animasyon
+  gsap.from("#product-left",{duration:1, x:-100, opacity:0, ease:"power3.out"});
+  gsap.from("#product-right",{duration:1, x:100, opacity:0, ease:"power3.out", delay:0.2});
 }
-
-// Read More
-const desc = document.getElementById("product-desc");
-const readMore = document.getElementById("read-more");
-let expanded = false;
-readMore.addEventListener("click",()=>{
- expanded = !expanded;
- if(expanded){
-   desc.classList.add("expanded");
-   readMore.innerText = "Daha Az Göster";
- }else{
-   desc.classList.remove("expanded");
-   readMore.innerText = "Daha Fazlası...";
- }
-});
-
-// GSAP Animasyon
-gsap.from("#product-left",{duration:1, x:-100, opacity:0, ease:"power3.out"});
-gsap.from("#product-right",{duration:1, x:100, opacity:0, ease:"power3.out", delay:0.2});
 </script>
 
 </body>
