@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ürün Detayı | MARLA TECH</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+body{font-family:Poppins,sans-serif;padding:50px;background:#f9f9f9;color:#111;}
+a{color:#d4af37;text-decoration:none;font-weight:600;}
+img{max-width:400px;width:100%;border-radius:12px;margin-bottom:20px;}
+h1{margin-bottom:20px;color:#d4af37;}
+p{margin-bottom:20px;color:#555;}
+</style>
+</head>
+<body>
+<div id="product"></div>
+<a href="index.html">← Ana Sayfaya Dön</a>
+
+<script>
+const products=[
+ {id:1,name:"AeroPods X",cat:"KULAKLIK",img:"https://images.unsplash.com/photo-1585386959984-a4155224a1ad",desc:"Aktif gürültü engelleme"},
+ {id:2,name:"Nova Watch Pro",cat:"AKILLI SAAT",img:"https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1",desc:"Amoled ekran"},
+];
+
+const params = new URLSearchParams(window.location.search);
+const id = parseInt(params.get("id"));
+const p = products.find(x=>x.id===id);
+
+if(p){
+ document.getElementById("product").innerHTML = `
+   <h1>${p.name}</h1>
+   <img src="${p.img}" alt="${p.name}">
+   <p>${p.desc}</p>
+ `;
+}else{
+ document.getElementById("product").innerHTML = "<p>Ürün bulunamadı.</p>";
+}
+</script>
+</body>
+</html>
