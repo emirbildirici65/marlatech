@@ -3,405 +3,425 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>MARLA TECH</title>
+
+<title>MARLA TECH | Premium Electronics</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
---gold:#C6A961;
---black:#111;
---light:#ffffff;
---gray:#f5f5f5;
+ --gold:#d4af37;
+ --black:#111;
+ --soft:#f6f6f6;
+ --gray:#777;
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
-}
-
-body{
-background:#fff;
-color:#111;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:white;color:var(--black)}
 
 /* ================= HEADER ================= */
 
-header{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:80px;
-background:white;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 60px;
-border-bottom:1px solid #eee;
-z-index:999;
+nav{
+ position:fixed;
+ top:0;
+ left:0;
+ width:100%;
+ height:80px;
+ background:white;
+ border-bottom:1px solid #eee;
+ z-index:9999;
 }
 
+.nav-inner{
+ height:100%;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 70px;
+}
+
+/* LOGO büyütüldü + tıklanabilir */
 .logo{
-display:flex;
-align-items:center;
-gap:10px;
-cursor:pointer;
+ height:54px;
+ cursor:pointer;
 }
 
-.logo img{
-height:46px;
+.menu{
+ display:flex;
+ gap:40px;
+ align-items:center;
 }
 
-.logo span{
-font-size:22px;
-font-weight:700;
-letter-spacing:2px;
+.menu-item{
+ position:relative;
+ font-size:14px;
+ font-weight:500;
+ cursor:pointer;
+ padding-bottom:20px; /* dropdown gap fix */
 }
 
-.nav{
-display:flex;
-gap:40px;
-align-items:center;
-}
+.menu-item:hover{color:var(--gold)}
 
-.nav-item{
-position:relative;
-cursor:pointer;
-font-weight:600;
-}
-
-/* ===== DROPDOWN FIX ===== */
+/* ===== DROPDOWN FIX (kapanma sorunu çözüldü) ===== */
 
 .dropdown{
-position:absolute;
-top:100%;
-left:0;
-background:white;
-border:1px solid #eee;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
-max-height:260px;
-overflow-y:auto;
-width:230px;
-opacity:0;
-visibility:hidden;
-transform:translateY(5px);
-transition:.25s;
-padding:10px 0;
+ position:absolute;
+ top:38px;
+ left:0;
+ width:260px;
+ max-height:240px;
+ overflow-y:auto;
+ background:white;
+ border-radius:12px;
+ box-shadow:0 10px 30px rgba(0,0,0,.15);
+ padding:8px 0;
+ display:none;
 }
 
-/* BOŞLUK OLMASIN */
-.nav-item:hover .dropdown,
+.menu-item:hover .dropdown,
 .dropdown:hover{
-opacity:1;
-visibility:visible;
-transform:translateY(0);
+ display:block;
 }
 
 .dropdown div{
-padding:10px 18px;
-cursor:pointer;
+ padding:10px 16px;
+ font-size:13px;
+ cursor:pointer;
 }
 
 .dropdown div:hover{
-background:var(--gold);
-color:white;
+ background:var(--soft);
+ color:var(--gold);
 }
 
-/* ================= SLIDER ================= */
+/* ===== CONTENT OFFSET ===== */
+
+main{
+ padding-top:80px;
+}
+
+/* ================= HERO ================= */
 
 .hero{
-margin-top:80px;
-height:90vh;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
-overflow:hidden;
+ height:75vh;
+ position:relative;
+ overflow:hidden;
 }
 
 .slide{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-opacity:0;
-transition:1s;
+ position:absolute;
+ width:100%;
+ height:100%;
+ background-size:cover;
+ background-position:center;
+ opacity:0;
+ transition:1s;
 }
 
-.slide.active{
-opacity:1;
+.slide.active{opacity:1}
+
+/* ortalama + logo */
+.hero-text{
+ position:absolute;
+ inset:0;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ gap:20px;
+ font-size:60px;
+ font-weight:700;
+ text-align:center;
 }
 
-.hero-center{
-position:absolute;
-text-align:center;
+.hero-text img{
+ height:95px;
 }
 
-.hero-center img{
-height:90px;
-margin-bottom:20px;
-}
-
-.hero-center h1{
-font-size:48px;
-letter-spacing:6px;
-}
+.hero-text span{color:var(--gold)}
 
 .arrow{
-position:absolute;
-top:50%;
-transform:translateY(-50%);
-font-size:30px;
-background:white;
-width:40px;
-height:40px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-box-shadow:0 4px 12px rgba(0,0,0,.2);
+ position:absolute;
+ top:50%;
+ transform:translateY(-50%);
+ background:white;
+ padding:8px 12px;
+ border-radius:50%;
+ cursor:pointer;
+ box-shadow:0 4px 14px rgba(0,0,0,.15);
 }
 
-.arrow.left{ left:20px; }
-.arrow.right{ right:20px; }
+.left{left:20px}
+.right{right:20px}
+
+/* ================= SECTIONS ================= */
+
+section{padding:100px 10%}
+
+.title{
+ text-align:center;
+ font-size:32px;
+ margin-bottom:50px;
+ color:var(--gold);
+}
 
 /* ================= PRODUCTS ================= */
 
-.section{
-padding:80px 60px;
-}
-
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:25px;
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+ gap:30px;
 }
 
 .card{
-border:1px solid #eee;
-border-radius:14px;
-padding:20px;
-text-align:center;
-transition:.3s;
-cursor:pointer;
+ background:white;
+ border-radius:18px;
+ overflow:hidden;
+ box-shadow:0 10px 30px rgba(0,0,0,.07);
+ cursor:pointer;
+ transition:.35s;
 }
 
 .card:hover{
-transform:translateY(-5px);
-box-shadow:0 10px 25px rgba(0,0,0,.1);
+ transform:translateY(-6px);
+ box-shadow:0 20px 40px rgba(0,0,0,.15);
 }
 
 .card img{
-width:100%;
-height:180px;
-object-fit:contain;
+ width:100%;
+ height:220px;
+ object-fit:cover;
 }
 
-.whatsapp{
-margin-top:10px;
-background:var(--gold);
-color:white;
-padding:8px 12px;
-border-radius:8px;
-font-size:14px;
+.content{padding:18px}
+
+.card p{font-size:13px;color:var(--gray)}
+
+.wa{
+ display:inline-block;
+ margin-top:10px;
+ padding:7px 12px;
+ background:#25D366;
+ color:white;
+ border-radius:8px;
+ font-size:12px;
+ text-decoration:none;
 }
 
-/* ================= MODAL FIX ================= */
+/* ================= MODAL (küçültüldü) ================= */
 
 .modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.6);
-display:none;
-align-items:center;
-justify-content:center;
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.7);
+ display:none;
+ align-items:center;
+ justify-content:center;
 }
 
 .modal-box{
-background:white;
-width:80%;
-max-width:700px;
-border-radius:14px;
-padding:25px;
+ background:white;
+ padding:30px;
+ border-radius:16px;
+ max-width:520px;
+ width:90%;
 }
 
 /* ================= ABOUT ================= */
 
-.about{
-background:var(--gray);
-text-align:center;
-}
-
-.about img{
-width:400px; /* 10x büyük logo */
-margin:40px 0;
+.about-logo{
+ display:block;
+ margin:40px auto;
+ width:380px; /* 10x büyük */
 }
 
 /* ================= CONTACT ================= */
 
 .contact{
-padding:60px;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
+ background:var(--soft);
 }
 
-input,textarea{
-width:100%;
-padding:12px;
-margin-bottom:12px;
-border:1px solid #ddd;
+.contact-wrapper{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:60px;
+ max-width:1100px;
+ margin:auto;
 }
 
-button{
-background:var(--gold);
-color:white;
-padding:12px;
-border:none;
-cursor:pointer;
+.contact-info p{
+ margin-bottom:10px;
+ color:#555;
+}
+
+form input, form textarea{
+ width:100%;
+ padding:12px;
+ margin-bottom:12px;
+ border:1px solid #ddd;
+ border-radius:8px;
+}
+
+form button{
+ background:var(--gold);
+ border:none;
+ padding:12px;
+ width:100%;
+ border-radius:8px;
+ cursor:pointer;
+ color:white;
+ font-weight:600;
 }
 
 footer{
-text-align:center;
-padding:25px;
-background:#111;
-color:white;
+ padding:30px;
+ text-align:center;
+ color:#777;
 }
+
+@media(max-width:768px){
+ .contact-wrapper{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header>
-<a href="#" class="logo">
-<img src="logo.png">
-<span>MARLA TECH</span>
-</a>
+<nav>
+ <div class="nav-inner">
 
-<div class="nav">
+  <img src="logo.png" class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
 
-<div class="nav-item">
-KATEGORİ
-<div class="dropdown">
-<div>KULAKLIK</div>
-<div>AKILLI SAAT</div>
-<div>PROJEKSİYON CİHAZI</div>
-<div>ORTAM NEMLENDİRİCİ</div>
-<div>POWERBANK</div>
-<div>KAMERA</div>
-<div>HOPARLÖR</div>
-<div>ARAÇ TEKNOLOJİSİ</div>
-<div>MOTOR TEKNOLOJİSİ</div>
-<div>EV TEKNOLOJİSİ</div>
-<div>HEDİYELİK ÜRÜNLER</div>
-</div>
-</div>
+  <div class="menu">
 
-<div class="nav-item">NEW</div>
-<div class="nav-item">Hakkımızda</div>
+   <div class="menu-item">
+    Kategoriler
+    <div class="dropdown" id="dropdown"></div>
+   </div>
 
-</div>
-</header>
+   <div class="menu-item" onclick="showNew()">NEW</div>
+   <div class="menu-item" onclick="scrollToAbout()">Hakkımızda</div>
+   <div class="menu-item" onclick="scrollToContact()">İletişim</div>
 
+  </div>
 
-<!-- SLIDER -->
+ </div>
+</nav>
+
+<main>
+
 <section class="hero">
-<img src="https://picsum.photos/1600/900?1" class="slide active">
-<img src="https://picsum.photos/1600/900?2" class="slide">
-<img src="https://picsum.photos/1600/900?3" class="slide">
 
-<div class="hero-center">
-<img src="logo.png">
-<h1>MARLA TECH</h1>
-</div>
+ <div class="slide active" style="background:url('https://images.unsplash.com/photo-1518770660439-4636190af475')"></div>
+ <div class="slide" style="background:url('https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1')"></div>
 
-<div class="arrow left" onclick="prev()">‹</div>
-<div class="arrow right" onclick="next()">›</div>
+ <div class="hero-text">
+  <img src="logo.png">
+  <div><span>MARLA</span> TECH</div>
+ </div>
+
+ <div class="arrow left" onclick="prev()">‹</div>
+ <div class="arrow right" onclick="next()">›</div>
+
 </section>
 
 
-<!-- PRODUCTS -->
-<section class="section">
-<h2>Ürünler</h2>
-<br>
-<div class="products">
-
-<div class="card" onclick="openModal()">
-<img src="https://picsum.photos/300/300?1">
-<h4>Bluetooth Kulaklık</h4>
-<p>Premium ses kalitesi</p>
-<div class="whatsapp">WhatsApp Teklif Al</div>
-</div>
-
-<div class="card" onclick="openModal()">
-<img src="https://picsum.photos/300/300?2">
-<h4>Akıllı Saat</h4>
-<p>Süper AMOLED ekran</p>
-<div class="whatsapp">WhatsApp Teklif Al</div>
-</div>
-
-</div>
+<section id="products">
+<h2 class="title">ÜRÜNLER</h2>
+<div class="grid" id="grid"></div>
 </section>
 
 
-<!-- ABOUT -->
-<section class="about section">
-<h2>Hakkımızda</h2>
-<img src="logo.png">
-<p>
-MARLA TECH global elektronik ithalat ve toptan satış çözümleri sunar.  
-Premium kalite, güvenilir tedarik ve modern teknoloji odaklıdır.
+<section id="about">
+<h2 class="title">Hakkımızda</h2>
+
+<img src="logo.png" class="about-logo">
+
+<p style="max-width:800px;margin:auto;text-align:center;color:#666">
+MARLA TECH global elektronik ithalat ve toptan satış çözümleri sunar. Premium kalite, güvenilir tedarik ve modern teknoloji odaklıdır.
 </p>
 </section>
 
 
-<!-- CONTACT -->
-<section class="contact">
-<div>
-<h3>İletişim</h3>
-<p>info@marlatech.com</p>
-<p>+90 XXX XXX XX XX</p>
-</div>
+<section id="contact" class="contact">
+<h2 class="title">İletişim</h2>
 
-<div>
-<h3>Mesaj Gönder</h3>
-<input placeholder="Adınız">
-<input placeholder="E-posta">
-<textarea rows="4"></textarea>
-<button>Gönder</button>
+<div class="contact-wrapper">
+
+ <div class="contact-info">
+  <p><b>MARLA TECH</b></p>
+  <p>📍 İstanbul / Türkiye</p>
+  <p>📞 +90 5XX XXX XX XX</p>
+  <p>✉ info@marlatech.com</p>
+ </div>
+
+ <form action="mailto:info@marlatech.com" method="post" enctype="text/plain">
+  <input placeholder="Ad Soyad" required>
+  <input placeholder="Email" required>
+  <textarea rows="5" placeholder="Mesajınız"></textarea>
+  <button>Gönder</button>
+ </form>
+
 </div>
 </section>
 
 <footer>© 2026 MARLA TECH</footer>
 
+</main>
 
-<!-- MODAL -->
-<div class="modal" id="modal" onclick="closeModal()">
-<div class="modal-box">Ürün Detayı Burada</div>
+
+<div class="modal" id="modal" onclick="this.style.display='none'">
+ <div class="modal-box" id="modalBox"></div>
 </div>
 
 
 <script>
+
+const cats=["KULAKLIK","AKILLI SAAT","PROJEKSİYON CİHAZI","ORTAM NEMLENDİRİCİ","POWERBANK","KAMERA","HOPARLÖR","ARAÇ TEKNOLOJİSİ","MOTOR TEKNOLOJİSİ","EV TEKNOLOJİSİ","HEDİYELİK ÜRÜNLER"];
+cats.forEach(c=> dropdown.innerHTML+=`<div onclick="filter('${c}')">${c}</div>`);
+
+const products=[
+ {name:"AeroPods X",cat:"KULAKLIK",img:"https://images.unsplash.com/photo-1585386959984-a4155224a1ad",desc:"Aktif gürültü engelleme"},
+ {name:"Nova Watch Pro",cat:"AKILLI SAAT",img:"https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1",desc:"Amoled ekran"},
+];
+
+function render(list){
+ grid.innerHTML="";
+ list.forEach(p=>{
+  grid.innerHTML+=`
+  <div class="card" onclick='detail(${JSON.stringify(p)})'>
+   <img src="${p.img}">
+   <div class="content">
+    <h4>${p.name}</h4>
+    <p>${p.desc}</p>
+    <a class="wa" href="https://wa.me/905000000000">WhatsApp Teklif</a>
+   </div>
+  </div>`;
+ });
+}
+
+render(products);
+
+function filter(cat){ render(products.filter(p=>p.cat===cat)); }
+
+function detail(p){
+ modal.style.display="flex";
+ modalBox.innerHTML=`<img src="${p.img}" style="width:100%;border-radius:10px"><h3 style="margin-top:15px">${p.name}</h3><p>${p.desc}</p>`;
+}
+
+let slides=document.querySelectorAll(".slide");
 let i=0;
-const slides=document.querySelectorAll(".slide");
+function show(n){slides.forEach(s=>s.classList.remove("active"));slides[n].classList.add("active")}
+function next(){i=(i+1)%slides.length;show(i)}
+function prev(){i=(i-1+slides.length)%slides.length;show(i)}
+setInterval(next,5000);
 
-function show(){
-slides.forEach(s=>s.classList.remove("active"));
-slides[i].classList.add("active");
-}
-function next(){ i=(i+1)%slides.length; show(); }
-function prev(){ i=(i-1+slides.length)%slides.length; show(); }
-setInterval(next,4000);
+function scrollToAbout(){about.scrollIntoView({behavior:"smooth"})}
+function scrollToContact(){contact.scrollIntoView({behavior:"smooth"})}
+function showNew(){render(products.slice(-1))}
 
-function openModal(){
-document.getElementById("modal").style.display="flex";
-}
-function closeModal(){
-document.getElementById("modal").style.display="none";
-}
 </script>
 
 </body>
