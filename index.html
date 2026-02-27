@@ -119,55 +119,71 @@ MARLA TECH global elektronik ithalat ve toptan satış çözümleri sunar. Premi
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.0/gsap.min.js"></script>
 <script>
-// Kategoriler
-const cats=["KULAKLIK","AKILLI SAAT","PROJEKSİYON CİHAZI","ORTAM NEMLENDİRİCİ","POWERBANK","KAMERA","HOPARLÖR","ARAÇ TEKNOLOJİSİ","MOTOR TEKNOLOJİSİ","EV TEKNOLOJİSİ","HEDİYELİK ÜRÜNLER"];
-cats.forEach(c=> dropdown.innerHTML+=`<div onclick="filter('${c}')">${c}</div>`);
+// Global products array
+let products = [];
 
-// Ürünler
-let products = []; // global değişken
-
+// JSON'dan ürünleri al
 fetch('products.json')
 .then(res => res.json())
 .then(data => {
-  products = data; // JSON veriyi products arrayine atıyoruz
-  render(products); // Mevcut render fonksiyonu ile grid’e basıyoruz
+  products = data;
+  populateCategories(); // JSON'dan kategorileri otomatik ekle
+  render(products);     // Ürünleri grid'de göster
 });
 
-// Render
-function render(list){
- grid.innerHTML="";
- list.forEach(p=>{
-  grid.innerHTML+=`
-  <div class="card" onclick='detail(${p.id})'>
-   <img src="${p.img}">
-   <div class="content">
-    <h4>${p.name}</h4>
-    <p>${p.desc}</p>
-    <a class="wa" href="https://wa.me/905000000000">WhatsApp Teklif</a>
-   </div>
-  </div>`;
- });
-
- // GSAP animasyon
- gsap.from(".card", {duration:0.8, opacity:0, y:50, stagger:0.15, ease:"power3.out"});
- document.querySelectorAll(".card").forEach(card=>{
-   card.addEventListener("mouseenter", ()=> gsap.to(card, {scale:1.03, duration:0.3, ease:"power3.out"}));
-   card.addEventListener("mouseleave", ()=> gsap.to(card, {scale:1, duration:0.3, ease:"power3.out"}));
- });
+// JSON'dan kategorileri otomatik çek
+function populateCategories(){
+  const dropdown = document.getElementById("dropdown");
+  const categories = [...new Set(products.map(p => p.category))]; // benzersiz kategoriler
+  categories.forEach(cat => {
+    dropdown.innerHTML += `<div onclick="filter('${cat}')">${cat}</div>`;
+  });
 }
 
-render(products);
-function filter(cat){ render(products.filter(p=>p.cat===cat)); }
-function detail(id){ window.location.href=`product.html?id=${id}`; }
+// Grid render fonksiyonu
+function render(list){
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+  list.forEach(p=>{
+    grid.innerHTML+=`
+      <div class="card" onclick='detail(${p.id})'>
+        <img src="${p.images[0]}">
+        <div class="content">
+          <h4>${p.name}</h4>
+          <p>${p.desc}</p>
+          <a class="wa" href="https://wa.me/905000000000" target="_blank">WhatsApp Teklif</a>
+        </div>
+      </div>
+    `;
+  });
+
+  // GSAP animasyon
+  gsap.from(".card", {duration:0.8, opacity:0, y:50, stagger:0.15, ease:"power3.out"});
+  document.querySelectorAll(".card").forEach(card=>{
+    card.addEventListener("mouseenter", ()=> gsap.to(card, {scale:1.03, duration:0.3, ease:"power3.out"}));
+    card.addEventListener("mouseleave", ()=> gsap.to(card, {scale:1, duration:0.3, ease:"power3.out"}));
+  });
+}
+
+// Filtreleme
+function filter(cat){
+  render(products.filter(p => p.category === cat));
+}
+
+// Detay sayfası yönlendirme
+function detail(id){
+  window.location.href = `product.html?id=${id}`;
+}
 
 // Hero slider
-let slides=document.querySelectorAll(".slide"); let i=0;
+let slides = document.querySelectorAll(".slide"); 
+let i=0;
 function show(n){slides.forEach(s=>s.classList.remove("active"));slides[n].classList.add("active")}
 function next(){i=(i+1)%slides.length;show(i)}
 function prev(){i=(i-1+slides.length)%slides.length;show(i)}
 setInterval(next,5000);
 
-// Scroll
+// Scroll fonksiyonları
 function scrollToAbout(){about.scrollIntoView({behavior:"smooth"})}
 function scrollToContact(){contact.scrollIntoView({behavior:"smooth"})}
 function showNew(){render(products.slice(-1))}
@@ -175,4 +191,3 @@ function showNew(){render(products.slice(-1))}
 
 </body>
 </html>
-
