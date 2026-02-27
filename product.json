@@ -2,21 +2,22 @@
   {
     "id": 1,
     "name": "AeroPods X",
-    "desc": "Aktif gürültü engelleme ve uzun pil ömrü ile premium bir kulaklık deneyimi. Bluetooth 5.2 ile hızlı bağlantı, ergonomik tasarım ve yüksek kaliteli ses performansı sağlar.",
-    "category": "KULAKLIK",
-    "code": "APX-001",
+    "cat": "KULAKLIK",
     "images": [
-      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad"
-    ]
+      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad",
+      "https://images.unsplash.com/photo-1599058917210-5b6d1212e2b1",
+      "https://images.unsplash.com/photo-1600185369831-9d3e01b7b0a0"
+    ],
+    "desc": "Aktif gürültü engelleme ve uzun pil ömrü ile premium bir kulaklık deneyimi sunar. Bluetooth 5.2 ile hızlı bağlantı, ergonomik tasarım ve yüksek kaliteli ses performansı sağlar. Gürültü engelleme modları sayesinde tüm ortam seslerini kontrol edebilirsiniz. Dahili mikrofon ve kontrol tuşlarıyla rahat kullanım. Kendi kulak pedleri değiştirilebilir ve taşıma çantası ile birlikte gelir."
   },
   {
     "id": 2,
     "name": "Nova Watch Pro",
-    "desc": "Amoled ekran, uzun pil ömrü ve sağlık takip özellikleri ile öne çıkan bir akıllı saat. Nabız ölçer, uyku takibi ve spor modları bulunur.",
-    "category": "AKILLI SAAT",
-    "code": "NWP-001",
+    "cat": "AKILLI SAAT",
     "images": [
-      "https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1"
-    ]
+      "https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1",
+      "https://images.unsplash.com/photo-1549924231-f129b911e442"
+    ],
+    "desc": "Amoled ekran, uzun pil ömrü ve sağlık takip özellikleri ile öne çıkan bir akıllı saat. Nabız ölçer, uyku takibi, adım sayacı ve spor modları bulunur. Suya dayanıklı gövdesi sayesinde her ortamda güvenle kullanılabilir. Bildirimleri telefon ile senkronize edebilir, müzik kontrolünü kolaylıkla yapabilirsiniz."
   }
 ]
