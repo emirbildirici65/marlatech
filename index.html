@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
 <title>MARLA TECH | Premium Electronics</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -11,214 +10,211 @@
 <style>
 
 :root{
-  --gold:#d4af37;
-  --black:#111;
-  --soft:#f6f6f6;
-  --gray:#777;
+ --gold:#d4af37;
+ --black:#111;
+ --soft:#f6f6f6;
+ --gray:#777;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
 
-body{background:white;color:var(--black);overflow-x:hidden}
+body{background:#fff;color:#111}
 
-/* NAV */
+/* ================= HEADER ================= */
 
 nav{
-  position:fixed;
-  width:100%;
-  background:white;
-  border-bottom:1px solid #eee;
-  z-index:1000;
+ position:fixed;
+ width:100%;
+ background:white;
+ border-bottom:1px solid #eee;
+ z-index:1000;
 }
 
-.nav-top{
-  height:80px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 60px;
+.nav-inner{
+ height:80px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 70px;
 }
 
 .logo{height:46px}
 
-.nav-links{
-  display:flex;
-  gap:28px;
+.menu{
+ display:flex;
+ gap:40px;
+ align-items:center;
 }
 
-.nav-links a{
-  text-decoration:none;
-  color:#333;
-  font-size:14px;
-  font-weight:500;
+.menu-item{
+ position:relative;
+ cursor:pointer;
+ font-size:14px;
+ font-weight:500;
 }
 
-.nav-links a:hover{color:var(--gold)}
+.menu-item:hover{color:var(--gold)}
 
-/* CATEGORY BAR */
 
-.category-bar{
-  display:flex;
-  gap:12px;
-  overflow:auto;
-  padding:14px 40px;
-  background:var(--soft);
+/* DROPDOWN */
+
+.dropdown{
+ position:absolute;
+ top:30px;
+ left:0;
+ width:260px;
+ max-height:240px; /* 6 item civarı */
+ overflow-y:auto;
+ background:white;
+ border-radius:12px;
+ box-shadow:0 10px 30px rgba(0,0,0,.12);
+ display:none;
+ padding:8px 0;
 }
 
-.cat-btn{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 18px;
-  border-radius:12px;
-  background:white;
-  border:1px solid #e5e5e5;
-  cursor:pointer;
-  white-space:nowrap;
-  transition:.3s;
-  font-size:13px;
+.menu-item:hover .dropdown{
+ display:block;
 }
 
-.cat-btn:hover{
-  border-color:var(--gold);
-  color:var(--gold);
-  transform:translateY(-2px);
+.dropdown div{
+ padding:10px 16px;
+ font-size:13px;
+ transition:.2s;
+ white-space:nowrap;
 }
 
-/* HERO */
+.dropdown div:hover{
+ background:var(--soft);
+ color:var(--gold);
+}
+
+/* ================= HERO ================= */
 
 .hero{
-  margin-top:130px;
-  height:70vh;
-  position:relative;
-  overflow:hidden;
+ margin-top:80px;
+ height:75vh;
+ position:relative;
+ overflow:hidden;
 }
 
 .slide{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background-size:cover;
-  background-position:center;
-  opacity:0;
-  transition:1s;
+ position:absolute;
+ width:100%;
+ height:100%;
+ background-size:cover;
+ background-position:center;
+ opacity:0;
+ transition:1s;
 }
 
 .slide.active{opacity:1}
 
 .hero-text{
-  position:absolute;
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:56px;
-  font-weight:700;
+ position:absolute;
+ inset:0;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:60px;
+ font-weight:700;
 }
 
 .hero-text span{color:var(--gold)}
 
 .arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:white;
-  padding:8px 12px;
-  border-radius:50%;
-  cursor:pointer;
-  box-shadow:0 4px 14px rgba(0,0,0,.15);
+ position:absolute;
+ top:50%;
+ transform:translateY(-50%);
+ background:white;
+ padding:7px 11px;
+ border-radius:50%;
+ cursor:pointer;
+ box-shadow:0 4px 14px rgba(0,0,0,.15);
 }
 
 .left{left:20px}
 .right{right:20px}
 
-/* SECTION */
+/* ================= PRODUCTS ================= */
 
-section{padding:90px 10%}
+section{padding:100px 10%}
 
 .title{
-  font-size:32px;
-  text-align:center;
-  color:var(--gold);
-  margin-bottom:50px;
+ text-align:center;
+ font-size:32px;
+ margin-bottom:50px;
+ color:var(--gold);
 }
 
-/* GRID */
-
 .grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:30px;
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+ gap:30px;
 }
 
 .card{
-  background:white;
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:0 10px 30px rgba(0,0,0,.07);
-  cursor:pointer;
-  transition:.35s;
+ background:white;
+ border-radius:18px;
+ overflow:hidden;
+ box-shadow:0 10px 30px rgba(0,0,0,.07);
+ transition:.35s;
+ cursor:pointer;
 }
 
 .card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 20px 40px rgba(0,0,0,.15);
+ transform:translateY(-6px);
+ box-shadow:0 20px 40px rgba(0,0,0,.15);
 }
 
 .card img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
+ width:100%;
+ height:220px;
+ object-fit:cover;
 }
 
-.card .content{
-  padding:18px;
-}
+.content{padding:18px}
 
-.card h4{margin-bottom:6px}
 .card p{font-size:13px;color:var(--gray)}
 
 .wa{
-  display:inline-block;
-  margin-top:10px;
-  padding:7px 12px;
-  background:#25D366;
-  color:white;
-  border-radius:8px;
-  font-size:12px;
-  text-decoration:none;
+ display:inline-block;
+ margin-top:10px;
+ padding:7px 12px;
+ background:#25D366;
+ color:white;
+ border-radius:8px;
+ font-size:12px;
+ text-decoration:none;
 }
 
 /* MODAL */
 
 .modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.75);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.7);
+ display:none;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
 }
 
 .modal-box{
-  background:white;
-  max-width:520px;
-  padding:30px;
-  border-radius:16px;
+ background:white;
+ max-width:520px;
+ padding:30px;
+ border-radius:16px;
 }
 
-.modal img{
-  width:100%;
-  margin-bottom:20px;
-}
+.modal img{width:100%;margin-bottom:15px}
+
+/* FOOTER */
 
 footer{
-  background:var(--soft);
-  padding:40px;
-  text-align:center;
-  color:#777;
+ background:var(--soft);
+ padding:40px;
+ text-align:center;
+ color:#777;
 }
 
 </style>
@@ -226,29 +222,36 @@ footer{
 
 <body>
 
+<!-- ================= HEADER ================= -->
+
 <nav>
+ <div class="nav-inner">
 
-  <div class="nav-top">
-    <img src="logo.png" class="logo">
+  <img src="logo.png" class="logo">
 
-    <div class="nav-links">
-      <a href="#new">NEW</a>
-      <a href="#about">Hakkımızda</a>
-      <a href="#iletisim">İletişim</a>
-    </div>
+  <div class="menu">
+
+   <div class="menu-item">
+     Kategoriler
+     <div class="dropdown" id="dropdown"></div>
+   </div>
+
+   <div class="menu-item" onclick="showNew()">NEW</div>
+   <div class="menu-item" onclick="scrollToAbout()">Hakkımızda</div>
+   <div class="menu-item">İletişim</div>
+
   </div>
 
-  <div class="category-bar" id="cats"></div>
-
+ </div>
 </nav>
 
 
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
 <div class="slide active" style="background:url('https://images.unsplash.com/photo-1518770660439-4636190af475')"></div>
 <div class="slide" style="background:url('https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1')"></div>
-<div class="slide" style="background:url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9')"></div>
 
 <div class="hero-text"><span>MARLA</span>&nbsp;TECH</div>
 
@@ -258,118 +261,113 @@ footer{
 </section>
 
 
+<!-- PRODUCTS -->
 
 <section id="products">
-
 <h2 class="title">ÜRÜNLER</h2>
 <div class="grid" id="grid"></div>
-
 </section>
-
 
 
 <section id="about">
 <h2 class="title">Hakkımızda</h2>
-<p style="max-width:800px;margin:auto;text-align:center;color:#666">
-MARLA TECH olarak global üreticilerden yüksek kalite elektronik ürünleri ithal ederek
-Türkiye ve Avrupa pazarına premium standartlarda sunuyoruz. Güvenilir tedarik, modern tasarım ve sürdürülebilir teknoloji odaklı çalışıyoruz.
+<p style="text-align:center;color:#666;max-width:800px;margin:auto">
+MARLA TECH global elektronik ithalat ve toptan satış çözümleri sunar.
+Premium kalite, güvenilir tedarik ve modern teknoloji odaklıdır.
 </p>
 </section>
 
 
-
-<footer id="iletisim">
+<footer>
 © 2026 MARLA TECH
 </footer>
 
 
-
 <div class="modal" id="modal" onclick="this.style.display='none'">
-  <div class="modal-box" id="modalBox"></div>
+ <div class="modal-box" id="modalBox"></div>
 </div>
-
 
 
 <script>
 
-/* CATEGORIES */
+/* ====== CATEGORIES DROPDOWN ====== */
 
 const categories=[
-"🎧 KULAKLIK",
-"⌚ AKILLI SAAT",
-"📽 PROJEKSİYON CİHAZI",
-"💧 ORTAM NEMLENDİRİCİ",
-"🔋 POWERBANK",
-"📷 KAMERA",
-"🔊 HOPARLÖR",
-"🚗 ARAÇ TEKNOLOJİSİ",
-"🏍 MOTOR TEKNOLOJİSİ",
-"🏠 EV TEKNOLOJİSİ",
-"🎁 HEDİYELİK ÜRÜNLER"
+"KULAKLIK","AKILLI SAAT","PROJEKSİYON CİHAZI","ORTAM NEMLENDİRİCİ",
+"POWERBANK","KAMERA","HOPARLÖR","ARAÇ TEKNOLOJİSİ",
+"MOTOR TEKNOLOJİSİ","EV TEKNOLOJİSİ","HEDİYELİK ÜRÜNLER"
 ];
 
 categories.forEach(c=>{
-  cats.innerHTML+=`<div class="cat-btn" onclick="filter('${c.split(' ')[1]}')">${c}</div>`
+ dropdown.innerHTML+=`<div onclick="filter('${c}')">${c}</div>`;
 });
 
 
-/* PRODUCTS */
+/* ====== PRODUCTS ====== */
 
 const products=[
  {name:"AeroPods X",cat:"KULAKLIK",img:"https://images.unsplash.com/photo-1585386959984-a4155224a1ad",desc:"Aktif gürültü engelleme ve 30 saat pil ömrü."},
- {name:"Nova Watch Pro",cat:"AKILLI",img:"https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1",desc:"Amoled ekran, sağlık takibi, premium kasa."},
- {name:"MiniBeam 4K",cat:"PROJEKSİYON",img:"https://images.unsplash.com/photo-1509395176047-4a66953fd231",desc:"Taşınabilir 4K projeksiyon deneyimi."},
- {name:"MaxCharge 20K",cat:"POWERBANK",img:"https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04",desc:"20.000mAh hızlı şarj teknolojisi."}
+ {name:"Nova Watch Pro",cat:"AKILLI SAAT",img:"https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1",desc:"Amoled ekran ve sağlık takibi."},
+ {name:"MaxCharge 20K",cat:"POWERBANK",img:"https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04",desc:"Hızlı şarj powerbank."}
 ];
 
 function render(list){
-  grid.innerHTML="";
-  list.forEach(p=>{
-    grid.innerHTML+=`
-    <div class="card" onclick='detail(${JSON.stringify(p)})'>
-      <img src="${p.img}">
-      <div class="content">
-        <h4>${p.name}</h4>
-        <p>${p.desc}</p>
-        <a class="wa" href="https://wa.me/905000000000" target="_blank">WhatsApp Teklif</a>
-      </div>
-    </div>`;
-  });
+ grid.innerHTML="";
+ list.forEach(p=>{
+  grid.innerHTML+=`
+  <div class="card" onclick='detail(${JSON.stringify(p)})'>
+   <img src="${p.img}">
+   <div class="content">
+    <h4>${p.name}</h4>
+    <p>${p.desc}</p>
+    <a class="wa" href="https://wa.me/905000000000">WhatsApp Teklif</a>
+   </div>
+  </div>`;
+ });
 }
 
 render(products);
 
 function filter(cat){
-  render(products.filter(p=>p.cat.includes(cat)));
+ render(products.filter(p=>p.cat===cat));
 }
 
 
-/* DETAIL */
+/* ====== DETAIL ====== */
 
 function detail(p){
-  modal.style.display="flex";
-  modalBox.innerHTML=`
-    <img src="${p.img}">
-    <h3>${p.name}</h3>
-    <p>${p.desc} Profesyonel ithalat garantisi ve toptan satış avantajı.</p>
-    <a class="wa" href="https://wa.me/905000000000">WhatsApp Teklif Al</a>
-  `;
+ modal.style.display="flex";
+ modalBox.innerHTML=`
+  <img src="${p.img}">
+  <h3>${p.name}</h3>
+  <p>${p.desc}</p>
+  <a class="wa" href="https://wa.me/905000000000">Teklif Al</a>`;
 }
 
 
-/* SLIDER */
+/* ====== SLIDER ====== */
 
 let slides=document.querySelectorAll(".slide");
 let i=0;
 
 function show(n){
-  slides.forEach(s=>s.classList.remove("active"));
-  slides[n].classList.add("active");
+ slides.forEach(s=>s.classList.remove("active"));
+ slides[n].classList.add("active");
 }
-
 function next(){i=(i+1)%slides.length;show(i)}
 function prev(){i=(i-1+slides.length)%slides.length;show(i)}
 setInterval(next,5000);
+
+
+/* ====== NAV ACTIONS ====== */
+
+function scrollToAbout(){
+ document.getElementById("about").scrollIntoView({behavior:"smooth"});
+}
+
+function showNew(){
+ render(products.slice(-2));
+}
 
 </script>
 
