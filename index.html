@@ -124,10 +124,14 @@ const cats=["KULAKLIK","AKILLI SAAT","PROJEKSİYON CİHAZI","ORTAM NEMLENDİRİC
 cats.forEach(c=> dropdown.innerHTML+=`<div onclick="filter('${c}')">${c}</div>`);
 
 // Ürünler
-const products=[
- {id:1,name:"AeroPods X",cat:"KULAKLIK",img:"https://images.unsplash.com/photo-1585386959984-a4155224a1ad",desc:"Aktif gürültü engelleme"},
- {id:2,name:"Nova Watch Pro",cat:"AKILLI SAAT",img:"https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1",desc:"Amoled ekran"},
-];
+let products = []; // global değişken
+
+fetch('products.json')
+.then(res => res.json())
+.then(data => {
+  products = data; // JSON veriyi products arrayine atıyoruz
+  render(products); // Mevcut render fonksiyonu ile grid’e basıyoruz
+});
 
 // Render
 function render(list){
@@ -171,3 +175,4 @@ function showNew(){render(products.slice(-1))}
 
 </body>
 </html>
+
