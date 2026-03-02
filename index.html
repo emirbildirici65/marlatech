@@ -4,56 +4,91 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>MARLA TECH</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
 --gold:#c7a14a;
---dark:#111;
---light:#fff;
+--soft:#f6f6f6;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
 
 body{background:#fff;color:#111}
 
-/* HEADER */
+/* ================= HEADER ================= */
 header{
-position:fixed;top:0;width:100%;
-background:#fff;display:flex;align-items:center;
+position:fixed;
+top:0;
+width:100%;
+background:#fff;
+display:flex;
+align-items:center;
 justify-content:space-between;
-padding:18px 60px;
-box-shadow:0 2px 12px rgba(0,0,0,.05);
+padding:16px 70px;
+box-shadow:0 2px 14px rgba(0,0,0,.05);
 z-index:999;
 }
 
-.logo img{height:42px;cursor:pointer}
+.logo img{
+height:46px;
+cursor:pointer;
+}
 
-nav{display:flex;gap:28px;align-items:center}
+nav{
+display:flex;
+gap:30px;
+align-items:center;
+}
 
 /* search */
 .search{
-padding:8px 14px;border-radius:25px;border:1px solid #ddd
+padding:9px 16px;
+border-radius:30px;
+border:1px solid #ddd;
+outline:none;
+transition:.3s;
+}
+.search:focus{
+border-color:var(--gold);
+box-shadow:0 0 0 3px rgba(199,161,74,.15);
 }
 
-/* dropdown */
-.dropdown{position:relative}
+/* dropdown FIXED */
+.dropdown{
+position:relative;
+padding-bottom:14px;
+}
+
 .dropdown-menu{
-position:absolute;top:40px;left:0;
+position:absolute;
+top:100%;
+left:0;
 background:#fff;
-box-shadow:0 10px 30px rgba(0,0,0,.1);
-border-radius:10px;
-max-height:260px;
-overflow-y:auto;
-display:none;
+border-radius:14px;
+box-shadow:0 14px 40px rgba(0,0,0,.12);
+min-width:220px;
 padding:10px;
-width:220px;
+display:none;
 }
-.dropdown:hover .dropdown-menu{display:block}
-.dropdown-menu div{padding:8px;border-radius:6px;cursor:pointer}
-.dropdown-menu div:hover{background:#f6f6f6}
 
-/* HERO */
+/* hover safe zone */
+.dropdown:hover .dropdown-menu{
+display:block;
+}
+
+.dropdown-menu div{
+padding:9px 12px;
+border-radius:8px;
+cursor:pointer;
+transition:.2s;
+}
+.dropdown-menu div:hover{
+background:var(--soft);
+color:var(--gold);
+}
+
+/* ================= HERO ================= */
 .hero{
 margin-top:90px;
 height:520px;
@@ -62,149 +97,213 @@ overflow:hidden;
 }
 
 .slide{
-position:absolute;width:100%;height:100%;
-background-size:cover;background-position:center;
-opacity:0;transition:1s;
+position:absolute;
+width:100%;height:100%;
+background-size:cover;
+background-position:center;
+opacity:0;
+transition:1s;
 }
-
 .slide.active{opacity:1}
 
 .arrow{
-position:absolute;top:50%;
+position:absolute;
+top:50%;
 transform:translateY(-50%);
-background:rgba(255,255,255,.6);
+background:rgba(255,255,255,.7);
+width:28px;height:28px;
 border-radius:50%;
-width:30px;height:30px;
-display:flex;align-items:center;justify-content:center;
-cursor:pointer;font-size:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+font-size:13px;
 }
+.left{left:12px}
+.right{right:12px}
 
-.left{left:10px}
-.right{right:10px}
-
-/* titles */
+/* ================= PRODUCTS ================= */
 .section-title{
 text-align:center;
 font-size:28px;
 font-weight:700;
-margin:60px 0 20px;
+margin:70px 0 25px;
 }
 
-/* products */
 .products{
-padding:20px 60px 80px;
+padding:20px 70px 80px;
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:30px;
 }
 
 .card{
-background:#fff;border-radius:14px;padding:20px;
-box-shadow:0 6px 20px rgba(0,0,0,.05);
-transition:.3s;cursor:pointer;position:relative;overflow:hidden;
+background:#fff;
+border-radius:16px;
+padding:20px;
+box-shadow:0 8px 26px rgba(0,0,0,.06);
+cursor:pointer;
+transition:.35s;
+position:relative;
+overflow:hidden;
 }
 
 .card:hover{
+transform:translateY(-6px);
 box-shadow:0 0 0 2px var(--gold);
-transform:translateY(-4px)
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:contain;
+transition:.4s;
+}
+.card:hover img{
+transform:scale(1.1);
 }
 
 .badge{
-position:absolute;top:12px;left:12px;
-background:var(--gold);color:#fff;
-font-size:11px;padding:4px 10px;border-radius:20px;font-weight:600;
+position:absolute;
+top:10px;
+left:10px;
+background:var(--gold);
+color:#fff;
+font-size:11px;
+padding:5px 10px;
+border-radius:20px;
+font-weight:600;
 }
 
-.card img{width:100%;height:200px;object-fit:contain;transition:.4s}
-.card:hover img{transform:scale(1.1)}
-
-/* CONTACT */
+/* ================= CONTACT UPGRADED ================= */
 .contact{
+background:#fafafa;
+padding:90px 70px;
+}
+
+.contact-box{
+max-width:1100px;
+margin:auto;
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:40px;
-padding:60px;
-background:#f8f8f8;
+gap:50px;
 }
 
-.contact form input,
-.contact form textarea{
-width:100%;padding:10px;margin-bottom:10px
+.contact-card{
+background:#fff;
+padding:40px;
+border-radius:18px;
+box-shadow:0 10px 40px rgba(0,0,0,.07);
 }
 
-/* ABOUT */
+.contact input,
+.contact textarea{
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border-radius:10px;
+border:1px solid #ddd;
+outline:none;
+transition:.3s;
+}
+
+.contact input:focus,
+.contact textarea:focus{
+border-color:var(--gold);
+box-shadow:0 0 0 3px rgba(199,161,74,.15);
+}
+
+.contact button{
+background:var(--gold);
+color:#fff;
+border:none;
+padding:12px;
+border-radius:10px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+.contact button:hover{
+transform:translateY(-2px);
+}
+
+/* ================= ABOUT ================= */
 .about{
-padding:60px;text-align:center
+padding:100px 20px;
+text-align:center;
 }
 .about img{
-height:200px;
-margin:20px 0;
+height:280px;
+margin:35px 0;
 }
 
 /* footer */
 footer{
-background:#111;color:#fff;text-align:center;padding:30px
+background:#111;
+color:#fff;
+text-align:center;
+padding:30px;
 }
 </style>
 </head>
+
 <body>
 
 <header>
 <a href="index.html" class="logo">
-<img src="logo.png">
+<img src="header-logo.png">
 </a>
 
 <nav>
 <div class="dropdown">
 <b>KATEGORİ</b>
-<div class="dropdown-menu">
-<div>KULAKLIK</div>
-<div>AKILLI SAAT</div>
-<div>PROJEKSİYON</div>
-<div>NEMLENDİRİCİ</div>
-<div>POWERBANK</div>
-<div>KAMERA</div>
-<div>HOPARLÖR</div>
-<div>ARAÇ TEKNOLOJİSİ</div>
-<div>MOTOR TEKNOLOJİSİ</div>
-<div>EV TEKNOLOJİSİ</div>
-<div>HEDİYELİK</div>
-</div>
+<div class="dropdown-menu" id="dropdown"></div>
 </div>
 
-<a href="#">NEW</a>
-<input id="search" class="search" placeholder="Ürün ara...">
+<a onclick="showNew()">NEW</a>
+
+<input id="search" class="search" placeholder="Ürün ara">
+
 <a href="#about">Hakkımızda</a>
 </nav>
 </header>
 
+
 <section class="hero">
 <div class="slide active" style="background-image:url('https://picsum.photos/1600/900?1')"></div>
 <div class="slide" style="background-image:url('https://picsum.photos/1600/900?2')"></div>
-<div class="slide" style="background-image:url('https://picsum.photos/1600/900?3')"></div>
 
 <div class="arrow left" onclick="prev()">‹</div>
 <div class="arrow right" onclick="next()">›</div>
 </section>
 
+
 <h2 class="section-title">ÜRÜNLER</h2>
 <section id="products" class="products"></section>
 
+
 <section class="contact">
-<div>
+<div class="contact-box">
+
+<div class="contact-card">
 <h2>İletişim</h2>
-<p>Adres: İstanbul / Türkiye</p>
-<p>Tel: +90 555 000 00 00</p>
-<p>Email: info@marlatech.com</p>
+<p>📍 İstanbul / Türkiye</p>
+<p>📞 +90 5XX XXX XX XX</p>
+<p>✉ info@marlatech.com</p>
 </div>
 
+<div class="contact-card">
 <form>
 <input placeholder="Ad Soyad">
 <input placeholder="Email">
 <textarea rows="5" placeholder="Mesaj"></textarea>
 <button>Gönder</button>
 </form>
+</div>
+
+</div>
 </section>
+
 
 <section id="about" class="about">
 <h2>Hakkımızda</h2>
@@ -212,45 +311,62 @@ background:#111;color:#fff;text-align:center;padding:30px
 <p>MARLA TECH global elektronik ithalat ve toptan satış çözümleri sunar.</p>
 </section>
 
+
 <footer>© 2026 MARLA TECH</footer>
+
 
 <script>
 let slides=document.querySelectorAll('.slide');
 let i=0;
-
 function show(n){
 slides[i].classList.remove('active');
 i=(n+slides.length)%slides.length;
 slides[i].classList.add('active');
 }
-
 function next(){show(i+1)}
 function prev(){show(i-1)}
+setInterval(next,4000);
 
-setInterval(next,3500);
-
+/* products */
+let products=[];
 fetch('product.json')
 .then(r=>r.json())
-.then(data=>{
-const wrap=document.getElementById('products');
-data.forEach((p,index)=>{
-const c=document.createElement('div');
-c.className='card';
-c.innerHTML=`
-${index<3?'<div class="badge">NEW</div>':''}
-<img src="${p.image}">
-<h4>${p.name}</h4>
-<b style="color:#c7a14a">${p.price} ₺</b>
-`;
-c.onclick=()=>location='product.html?id='+p.id;
-wrap.appendChild(c);
-});
+.then(d=>{
+products=d;
+
+const grid=document.getElementById('products');
+const drop=document.getElementById('dropdown');
+
+[...new Set(products.map(x=>x.cat))].forEach(cat=>{
+drop.innerHTML+=`<div onclick="filter('${cat}')">${cat}</div>`;
 });
 
+render(products);
+});
+
+function render(list){
+const grid=document.getElementById('products');
+grid.innerHTML="";
+list.forEach((p,i)=>{
+grid.innerHTML+=`
+<div class="card" onclick="location='product.html?id=${p.id}'">
+${i<2?'<div class="badge">NEW</div>':''}
+<img src="${p.images[0]}">
+<h4>${p.name}</h4>
+</div>`;
+});
+}
+
+function filter(c){
+render(products.filter(x=>x.cat===c));
+}
+
 search.oninput=e=>{
-document.querySelectorAll('.card').forEach(c=>{
-c.style.display=c.innerText.toLowerCase().includes(e.target.value.toLowerCase())?'block':'none'
-})
+render(products.filter(x=>x.name.toLowerCase().includes(e.target.value.toLowerCase())));
+}
+
+function showNew(){
+render(products.slice(-2));
 }
 </script>
 
