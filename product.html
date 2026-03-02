@@ -1,74 +1,38 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ürün Detay</title>
-
+<meta charset="UTF-8">
+<title>Ürün</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <style>
-body{
-font-family:Poppins, sans-serif;
-background:#fff;
-padding:100px 60px;
-}
+body{font-family:Poppins;padding:120px 60px}
 
-/* breadcrumb */
-.breadcrumb{
-margin-bottom:20px;
-color:#777;
-font-size:14px;
-}
+/* header aynı */
+header{position:fixed;top:0;width:100%;background:#fff;padding:18px 60px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+header img{height:42px}
 
-/* layout */
-.detail{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:60px;
-max-width:1100px;
-margin:auto;
-}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1100px;margin:auto}
 
-/* zoom hover */
-.image-wrap{
-overflow:hidden;
-border-radius:12px;
-}
+.image-wrap{overflow:hidden;border-radius:12px}
+.image-wrap img{width:100%;transition:.4s}
+.image-wrap:hover img{transform:scale(1.2)}
 
-.image-wrap img{
-width:100%;
-transition:.4s;
-}
+.buttons{position:sticky;top:120px;display:flex;flex-direction:column;gap:10px}
 
-.image-wrap:hover img{
-transform:scale(1.2);
-}
+.btn{padding:14px;text-align:center;border-radius:8px;text-decoration:none;font-weight:600}
+.whatsapp{background:#25d366;color:#fff}
+.offer{background:#c7a14a;color:#fff}
 
-/* sticky buttons */
-.buttons{
-position:sticky;
-top:120px;
-display:flex;
-flex-direction:column;
-gap:12px;
-margin-top:20px;
-}
-
-.btn{
-padding:14px;
-text-align:center;
-background:#c7a14a;
-color:#fff;
-text-decoration:none;
-border-radius:8px;
-font-weight:600;
-}
+.more{font-weight:700;cursor:pointer;margin-top:10px}
+.hidden{display:none}
 </style>
 </head>
+
 <body>
 
-<div class="breadcrumb">
-Ana Sayfa > Ürün > Detay
-</div>
+<header>
+<a href="index.html"><img src="logo.png"></a>
+</header>
 
 <div class="detail">
 <div class="image-wrap">
@@ -77,12 +41,13 @@ Ana Sayfa > Ürün > Detay
 
 <div>
 <h2 id="name"></h2>
-<p id="desc"></p>
-<h3 id="price"></h3>
+<p id="descShort"></p>
+<div id="descFull" class="hidden"></div>
+<div class="more" onclick="toggle()">Daha fazla...</div>
 
 <div class="buttons">
-<a href="https://wa.me/905555555555" class="btn">WhatsApp</a>
-<a href="#" class="btn">Satın Al</a>
+<a class="btn whatsapp">WhatsApp</a>
+<a class="btn offer">Teklif Al</a>
 </div>
 </div>
 </div>
@@ -92,14 +57,20 @@ const id=new URLSearchParams(location.search).get('id');
 
 fetch('product.json')
 .then(r=>r.json())
-.then(data=>{
-const p=data.find(x=>x.id==id);
+.then(d=>{
+const p=d.find(x=>x.id==id);
 
 img.src=p.image;
 name.innerText=p.name;
-desc.innerText=p.description;
-price.innerText=p.price+" ₺";
+
+let txt=p.description;
+descShort.innerText=txt.slice(0,120);
+descFull.innerText=txt.slice(120);
 });
+
+function toggle(){
+descFull.classList.toggle('hidden');
+}
 </script>
 
 </body>
