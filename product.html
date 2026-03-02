@@ -1,125 +1,105 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ürün Detayı | MARLA TECH</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.0/gsap.min.js"></script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ürün Detay</title>
+
 <style>
-body{font-family:Poppins,sans-serif;padding:50px;background:#f9f9f9;color:#111;margin:0;}
-a{text-decoration:none;}
-a.back{display:inline-block;margin-bottom:30px;color:#d4af37;font-weight:600;}
-.product-container{display:flex;gap:50px;max-width:1100px;margin:auto;flex-wrap:wrap;}
-.product-left{flex:1;min-width:300px;position:relative;}
-.category-badge{position:absolute;top:10px;left:10px;background:#d4af37;color:white;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;z-index:2;}
-.product-left img{width:100%;border-radius:12px;display:block;}
-.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.9);padding:8px 12px;border-radius:50%;cursor:pointer;font-size:20px;font-weight:600;user-select:none;box-shadow:0 4px 14px rgba(0,0,0,.15);}
-.left-arrow{left:10px;}
-.right-arrow{right:10px;}
-.product-right{flex:1;min-width:300px;display:flex;flex-direction:column;gap:20px;max-height:500px;}
-.product-right h1{margin:0;color:#d4af37;font-size:32px;}
-.product-right p{color:#555;line-height:1.6;overflow:hidden;position:relative;}
-.product-right p.expanded{max-height:none;}
-.read-more{color:#d4af37;font-weight:600;cursor:pointer;}
-.btn{padding:12px 20px;border-radius:8px;font-weight:600;cursor:pointer;text-align:center;display:inline-block;width:fit-content;text-decoration:none;}
-.btn.gold{background:#d4af37;color:white;}
-.btn.green{background:#25D366;color:white;}
-.sticky-btns{margin-top:auto;display:flex;gap:15px;flex-wrap:wrap;}
-@media(max-width:768px){
- .product-container{flex-direction:column;}
- .product-right{max-height:none;}
- .slider-arrow{padding:6px 10px;font-size:18px;}
+body{
+font-family:Poppins, sans-serif;
+background:#fff;
+padding:100px 60px;
+}
+
+/* breadcrumb */
+.breadcrumb{
+margin-bottom:20px;
+color:#777;
+font-size:14px;
+}
+
+/* layout */
+.detail{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+max-width:1100px;
+margin:auto;
+}
+
+/* zoom hover */
+.image-wrap{
+overflow:hidden;
+border-radius:12px;
+}
+
+.image-wrap img{
+width:100%;
+transition:.4s;
+}
+
+.image-wrap:hover img{
+transform:scale(1.2);
+}
+
+/* sticky buttons */
+.buttons{
+position:sticky;
+top:120px;
+display:flex;
+flex-direction:column;
+gap:12px;
+margin-top:20px;
+}
+
+.btn{
+padding:14px;
+text-align:center;
+background:#c7a14a;
+color:#fff;
+text-decoration:none;
+border-radius:8px;
+font-weight:600;
 }
 </style>
 </head>
 <body>
 
-<a href="index.html" class="back">← Ana Sayfaya Dön</a>
+<div class="breadcrumb">
+Ana Sayfa > Ürün > Detay
+</div>
 
-<div class="product-container">
- <div class="product-left" id="product-left">
-   <div class="category-badge" id="category"></div>
-   <img id="product-img" src="" alt="Ürün">
-   <div class="slider-arrow left-arrow" id="prev">&#10094;</div>
-   <div class="slider-arrow right-arrow" id="next">&#10095;</div>
- </div>
- <div class="product-right" id="product-right">
-   <h1 id="product-name"></h1>
-   <p id="product-desc"></p>
-   <span class="read-more" id="read-more">Daha Fazlası...</span>
-   <div class="sticky-btns">
-     <a id="whatsapp1" class="btn gold" target="_blank">Teklif Al</a>
-     <a id="whatsapp2" class="btn green" target="_blank">WhatsApp İletişim</a>
-   </div>
- </div>
+<div class="detail">
+<div class="image-wrap">
+<img id="img">
+</div>
+
+<div>
+<h2 id="name"></h2>
+<p id="desc"></p>
+<h3 id="price"></h3>
+
+<div class="buttons">
+<a href="https://wa.me/905555555555" class="btn">WhatsApp</a>
+<a href="#" class="btn">Satın Al</a>
+</div>
+</div>
 </div>
 
 <script>
-// JSON’dan ürünleri çek
-let products = [];
+const id=new URLSearchParams(location.search).get('id');
 
 fetch('product.json')
-  .then(res => res.json())
-  .then(data => {
-    products = data;
-    initProduct();
-  })
-  .catch(err => console.error("Ürünler yüklenemedi:", err));
+.then(r=>r.json())
+.then(data=>{
+const p=data.find(x=>x.id==id);
 
-function initProduct(){
-  const params = new URLSearchParams(window.location.search);
-  const id = parseInt(params.get("id"));
-  const p = products.find(x=>x.id===id);
-
-  let imgIndex = 0;
-
-  if(p){
-    document.getElementById("product-img").src = p.images[imgIndex];
-    document.getElementById("product-name").innerText = p.name;
-    document.getElementById("product-desc").innerText = p.desc;
-    document.getElementById("category").innerText = p.cat;
-
-    const whatsappLink = "https://wa.me/905000000000?text=" + encodeURIComponent("Merhaba, "+p.name+" için teklif almak istiyorum.");
-    document.getElementById("whatsapp1").href = whatsappLink;
-    document.getElementById("whatsapp2").href = whatsappLink;
-
-    // Slider okları
-    const prevBtn = document.getElementById("prev");
-    const nextBtn = document.getElementById("next");
-    prevBtn.addEventListener("click", ()=>{
-      imgIndex = (imgIndex-1+p.images.length)%p.images.length;
-      document.getElementById("product-img").src = p.images[imgIndex];
-    });
-    nextBtn.addEventListener("click", ()=>{
-      imgIndex = (imgIndex+1)%p.images.length;
-      document.getElementById("product-img").src = p.images[imgIndex];
-    });
-
-  }else{
-    document.getElementById("product-left").innerHTML = "<p>Ürün bulunamadı.</p>";
-    document.getElementById("product-right").innerHTML = "";
-  }
-
-  // Read More
-  const desc = document.getElementById("product-desc");
-  const readMore = document.getElementById("read-more");
-  let expanded = false;
-  readMore.addEventListener("click",()=>{
-    expanded = !expanded;
-    if(expanded){
-      desc.classList.add("expanded");
-      readMore.innerText = "Daha Az Göster";
-    }else{
-      desc.classList.remove("expanded");
-      readMore.innerText = "Daha Fazlası...";
-    }
-  });
-
-  // GSAP Animasyon
-  gsap.from("#product-left",{duration:1, x:-100, opacity:0, ease:"power3.out"});
-  gsap.from("#product-right",{duration:1, x:100, opacity:0, ease:"power3.out", delay:0.2});
-}
+img.src=p.image;
+name.innerText=p.name;
+desc.innerText=p.description;
+price.innerText=p.price+" ₺";
+});
 </script>
 
 </body>
