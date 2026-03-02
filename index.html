@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>MARLA TECH</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 
 <style>
@@ -14,159 +13,167 @@
 --light:#fff;
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
 
-body{
-background:#fff;
-color:#111;
-}
+body{background:#fff;color:#111}
 
 /* HEADER */
 header{
-position:fixed;
-top:0;
-width:100%;
-background:#fff;
-display:flex;
-align-items:center;
+position:fixed;top:0;width:100%;
+background:#fff;display:flex;align-items:center;
 justify-content:space-between;
 padding:18px 60px;
 box-shadow:0 2px 12px rgba(0,0,0,.05);
 z-index:999;
 }
 
-.logo{
-font-size:22px;
-font-weight:700;
-color:var(--dark);
-text-decoration:none;
-}
+.logo img{height:42px;cursor:pointer}
 
-nav{
-display:flex;
-gap:28px;
-align-items:center;
-}
+nav{display:flex;gap:28px;align-items:center}
 
-nav a{
-text-decoration:none;
-color:#222;
-font-weight:500;
-}
-
-/* SEARCH */
+/* search */
 .search{
-padding:8px 14px;
-border-radius:25px;
-border:1px solid #ddd;
-outline:none;
+padding:8px 14px;border-radius:25px;border:1px solid #ddd
 }
+
+/* dropdown */
+.dropdown{position:relative}
+.dropdown-menu{
+position:absolute;top:40px;left:0;
+background:#fff;
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+border-radius:10px;
+max-height:260px;
+overflow-y:auto;
+display:none;
+padding:10px;
+width:220px;
+}
+.dropdown:hover .dropdown-menu{display:block}
+.dropdown-menu div{padding:8px;border-radius:6px;cursor:pointer}
+.dropdown-menu div:hover{background:#f6f6f6}
 
 /* HERO */
 .hero{
 margin-top:90px;
 height:520px;
-overflow:hidden;
 position:relative;
+overflow:hidden;
 }
 
 .slide{
-position:absolute;
-width:100%;
-height:100%;
-background-size:cover;
-background-position:center;
-opacity:0;
-transform:scale(1.08);
-transition:all 1.2s ease;
+position:absolute;width:100%;height:100%;
+background-size:cover;background-position:center;
+opacity:0;transition:1s;
 }
 
-.slide.active{
-opacity:1;
-transform:scale(1);
+.slide.active{opacity:1}
+
+.arrow{
+position:absolute;top:50%;
+transform:translateY(-50%);
+background:rgba(255,255,255,.6);
+border-radius:50%;
+width:30px;height:30px;
+display:flex;align-items:center;justify-content:center;
+cursor:pointer;font-size:12px;
 }
 
-/* PRODUCTS */
+.left{left:10px}
+.right{right:10px}
+
+/* titles */
+.section-title{
+text-align:center;
+font-size:28px;
+font-weight:700;
+margin:60px 0 20px;
+}
+
+/* products */
 .products{
-padding:80px 60px;
+padding:20px 60px 80px;
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
 gap:30px;
 }
 
 .card{
-background:#fff;
-border-radius:14px;
-padding:20px;
+background:#fff;border-radius:14px;padding:20px;
 box-shadow:0 6px 20px rgba(0,0,0,.05);
-transition:.3s;
-cursor:pointer;
-position:relative;
-overflow:hidden;
+transition:.3s;cursor:pointer;position:relative;overflow:hidden;
 }
 
 .card:hover{
 box-shadow:0 0 0 2px var(--gold);
-transform:translateY(-4px);
+transform:translateY(-4px)
 }
 
-/* NEW badge */
 .badge{
-position:absolute;
-top:12px;
-left:12px;
-background:var(--gold);
-color:#fff;
-font-size:11px;
-padding:4px 10px;
-border-radius:20px;
-font-weight:600;
+position:absolute;top:12px;left:12px;
+background:var(--gold);color:#fff;
+font-size:11px;padding:4px 10px;border-radius:20px;font-weight:600;
 }
 
-/* image zoom */
-.card img{
-width:100%;
-height:200px;
-object-fit:contain;
-transition:.4s;
-}
+.card img{width:100%;height:200px;object-fit:contain;transition:.4s}
+.card:hover img{transform:scale(1.1)}
 
-.card:hover img{
-transform:scale(1.1);
-}
-
-.title{
-margin-top:12px;
-font-weight:600;
-}
-
-.price{
-color:var(--gold);
-margin-top:6px;
-}
-
-/* FOOTER */
-footer{
-background:#111;
-color:#fff;
+/* CONTACT */
+.contact{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
 padding:60px;
-text-align:center;
-margin-top:60px;
+background:#f8f8f8;
+}
+
+.contact form input,
+.contact form textarea{
+width:100%;padding:10px;margin-bottom:10px
+}
+
+/* ABOUT */
+.about{
+padding:60px;text-align:center
+}
+.about img{
+height:200px;
+margin:20px 0;
+}
+
+/* footer */
+footer{
+background:#111;color:#fff;text-align:center;padding:30px
 }
 </style>
 </head>
 <body>
 
 <header>
-<a href="index.html" class="logo">MARLA TECH</a>
+<a href="index.html" class="logo">
+<img src="logo.png">
+</a>
 
 <nav>
-<input class="search" id="search" placeholder="Ürün ara..." />
+<div class="dropdown">
+<b>KATEGORİ</b>
+<div class="dropdown-menu">
+<div>KULAKLIK</div>
+<div>AKILLI SAAT</div>
+<div>PROJEKSİYON</div>
+<div>NEMLENDİRİCİ</div>
+<div>POWERBANK</div>
+<div>KAMERA</div>
+<div>HOPARLÖR</div>
+<div>ARAÇ TEKNOLOJİSİ</div>
+<div>MOTOR TEKNOLOJİSİ</div>
+<div>EV TEKNOLOJİSİ</div>
+<div>HEDİYELİK</div>
+</div>
+</div>
+
+<a href="#">NEW</a>
+<input id="search" class="search" placeholder="Ürün ara...">
 <a href="#about">Hakkımızda</a>
 </nav>
 </header>
@@ -175,55 +182,76 @@ margin-top:60px;
 <div class="slide active" style="background-image:url('https://picsum.photos/1600/900?1')"></div>
 <div class="slide" style="background-image:url('https://picsum.photos/1600/900?2')"></div>
 <div class="slide" style="background-image:url('https://picsum.photos/1600/900?3')"></div>
+
+<div class="arrow left" onclick="prev()">‹</div>
+<div class="arrow right" onclick="next()">›</div>
 </section>
 
-<section class="products" id="products"></section>
+<h2 class="section-title">ÜRÜNLER</h2>
+<section id="products" class="products"></section>
 
-<footer id="about">
+<section class="contact">
+<div>
+<h2>İletişim</h2>
+<p>Adres: İstanbul / Türkiye</p>
+<p>Tel: +90 555 000 00 00</p>
+<p>Email: info@marlatech.com</p>
+</div>
+
+<form>
+<input placeholder="Ad Soyad">
+<input placeholder="Email">
+<textarea rows="5" placeholder="Mesaj"></textarea>
+<button>Gönder</button>
+</form>
+</section>
+
+<section id="about" class="about">
 <h2>Hakkımızda</h2>
-<p>Premium elektronik ithalat ve toptan satış çözümleri sunar.</p>
-</footer>
+<img src="logo.png">
+<p>MARLA TECH global elektronik ithalat ve toptan satış çözümleri sunar.</p>
+</section>
+
+<footer>© 2026 MARLA TECH</footer>
 
 <script>
-/* SLIDER */
-const slides=document.querySelectorAll('.slide');
+let slides=document.querySelectorAll('.slide');
 let i=0;
-setInterval(()=>{
-slides[i].classList.remove('active');
-i=(i+1)%slides.length;
-slides[i].classList.add('active');
-},3500);
 
-/* PRODUCTS */
+function show(n){
+slides[i].classList.remove('active');
+i=(n+slides.length)%slides.length;
+slides[i].classList.add('active');
+}
+
+function next(){show(i+1)}
+function prev(){show(i-1)}
+
+setInterval(next,3500);
+
 fetch('product.json')
 .then(r=>r.json())
 .then(data=>{
 const wrap=document.getElementById('products');
-
 data.forEach((p,index)=>{
-const card=document.createElement('div');
-card.className='card';
-
-card.innerHTML=`
+const c=document.createElement('div');
+c.className='card';
+c.innerHTML=`
 ${index<3?'<div class="badge">NEW</div>':''}
 <img src="${p.image}">
-<div class="title">${p.name}</div>
-<div class="price">${p.price} ₺</div>
+<h4>${p.name}</h4>
+<b style="color:#c7a14a">${p.price} ₺</b>
 `;
-
-card.onclick=()=>location.href=`product.html?id=${p.id}`;
-
-wrap.appendChild(card);
+c.onclick=()=>location='product.html?id='+p.id;
+wrap.appendChild(c);
+});
 });
 
-/* SEARCH */
-document.getElementById('search').addEventListener('input',e=>{
-const val=e.target.value.toLowerCase();
+search.oninput=e=>{
 document.querySelectorAll('.card').forEach(c=>{
-c.style.display=c.innerText.toLowerCase().includes(val)?'block':'none';
-});
-});
-});
+c.style.display=c.innerText.toLowerCase().includes(e.target.value.toLowerCase())?'block':'none'
+})
+}
 </script>
 
 </body>
