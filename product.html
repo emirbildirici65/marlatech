@@ -2,75 +2,354 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Ürün</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ürün Detayı | MARLA TECH</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.0/gsap.min.js"></script>
+
 <style>
-body{font-family:Poppins;padding:120px 60px}
+:root{
+ --gold:#d4af37;
+ --soft:#f6f6f6;
+ --gray:#666;
+}
 
-/* header aynı */
-header{position:fixed;top:0;width:100%;background:#fff;padding:18px 60px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
-header img{height:42px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:#fff;color:#111}
 
-.detail{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1100px;margin:auto}
+/* ================= HEADER (INDEX İLE AYNI) ================= */
 
-.image-wrap{overflow:hidden;border-radius:12px}
-.image-wrap img{width:100%;transition:.4s}
-.image-wrap:hover img{transform:scale(1.2)}
+header{
+ position:fixed;
+ top:0;
+ left:0;
+ width:100%;
+ height:80px;
+ background:#fff;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 70px;
+ box-shadow:0 2px 14px rgba(0,0,0,.05);
+ z-index:9999;
+}
 
-.buttons{position:sticky;top:120px;display:flex;flex-direction:column;gap:10px}
+.header-logo{
+ height:46px;
+ cursor:pointer;
+}
 
-.btn{padding:14px;text-align:center;border-radius:8px;text-decoration:none;font-weight:600}
-.whatsapp{background:#25d366;color:#fff}
-.offer{background:#c7a14a;color:#fff}
+nav{
+ display:flex;
+ align-items:center;
+ gap:30px;
+ font-size:14px;
+}
 
-.more{font-weight:700;cursor:pointer;margin-top:10px}
-.hidden{display:none}
+.nav-item{
+ cursor:pointer;
+ font-weight:500;
+}
+
+.nav-item:hover{color:var(--gold)}
+
+/* SEARCH */
+.search{
+ padding:9px 16px;
+ border-radius:30px;
+ border:1px solid #ddd;
+ outline:none;
+ transition:.3s;
+}
+.search:focus{
+ border-color:var(--gold);
+ box-shadow:0 0 0 3px rgba(212,175,55,.15);
+}
+
+/* DROPDOWN FIX */
+.dropdown{
+ position:relative;
+ padding-bottom:16px;
+}
+.dropdown-menu{
+ position:absolute;
+ top:100%;
+ left:0;
+ background:#fff;
+ border-radius:14px;
+ box-shadow:0 10px 30px rgba(0,0,0,.15);
+ min-width:220px;
+ padding:8px 0;
+ display:none;
+}
+.dropdown:hover .dropdown-menu{
+ display:block;
+}
+.dropdown-menu div{
+ padding:10px 16px;
+ cursor:pointer;
+}
+.dropdown-menu div:hover{
+ background:var(--soft);
+ color:var(--gold);
+}
+
+/* ================= PAGE ================= */
+
+main{
+ padding-top:110px;
+ padding-bottom:80px;
+}
+
+/* breadcrumb */
+.breadcrumb{
+ max-width:1100px;
+ margin:0 auto 30px;
+ color:#888;
+ font-size:13px;
+}
+
+/* ================= PRODUCT ================= */
+
+.product-container{
+ display:flex;
+ gap:60px;
+ max-width:1100px;
+ margin:auto;
+ flex-wrap:wrap;
+}
+
+.product-left{
+ flex:1;
+ min-width:300px;
+ position:relative;
+}
+
+.product-left img{
+ width:100%;
+ border-radius:14px;
+}
+
+.slider-arrow{
+ position:absolute;
+ top:50%;
+ transform:translateY(-50%);
+ background:rgba(255,255,255,.85);
+ width:30px;
+ height:30px;
+ border-radius:50%;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ cursor:pointer;
+ font-size:14px;
+ box-shadow:0 4px 14px rgba(0,0,0,.15);
+}
+.left-arrow{left:10px}
+.right-arrow{right:10px}
+
+.product-right{
+ flex:1;
+ min-width:300px;
+ display:flex;
+ flex-direction:column;
+ gap:20px;
+}
+
+.product-right h1{
+ color:var(--gold);
+ font-size:30px;
+}
+
+/* description with expand */
+.desc-wrapper{
+ position:relative;
+}
+
+#product-desc{
+ max-height:120px;
+ overflow:hidden;
+ line-height:1.7;
+ color:#555;
+ transition:.4s;
+}
+
+#product-desc.expanded{
+ max-height:1000px;
+}
+
+.read-more{
+ margin-top:8px;
+ font-weight:600;
+ cursor:pointer;
+ color:var(--gold);
+}
+
+/* sticky buttons */
+.sticky-btns{
+ margin-top:auto;
+ display:flex;
+ gap:15px;
+ position:sticky;
+ bottom:10px;
+ background:#fff;
+ padding-top:10px;
+}
+
+.btn{
+ padding:12px 20px;
+ border-radius:10px;
+ font-weight:600;
+ text-decoration:none;
+ text-align:center;
+}
+
+.gold{
+ background:var(--gold);
+ color:#fff;
+}
+
+.green{
+ background:#25D366;
+ color:#fff;
+}
+
+.btn:hover{
+ transform:translateY(-2px);
+}
+
+@media(max-width:768px){
+ .product-container{flex-direction:column}
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<a href="index.html"><img src="logo.png"></a>
+
+<a href="index.html">
+ <img src="header-logo.png" class="header-logo">
+</a>
+
+<nav>
+
+<div class="dropdown nav-item">
+Kategoriler
+<div class="dropdown-menu" id="dropdown"></div>
+</div>
+
+<div class="nav-item" onclick="showNew()">NEW</div>
+
+<input class="search" id="search" placeholder="Ürün ara">
+
+<a class="nav-item" href="index.html#about">Hakkımızda</a>
+
+</nav>
 </header>
 
-<div class="detail">
-<div class="image-wrap">
-<img id="img">
+
+<main>
+
+<div class="breadcrumb">
+Ana Sayfa > Ürün Detayı
 </div>
 
-<div>
-<h2 id="name"></h2>
-<p id="descShort"></p>
-<div id="descFull" class="hidden"></div>
-<div class="more" onclick="toggle()">Daha fazla...</div>
 
-<div class="buttons">
-<a class="btn whatsapp">WhatsApp</a>
-<a class="btn offer">Teklif Al</a>
+<div class="product-container">
+
+ <div class="product-left">
+   <img id="product-img">
+   <div class="slider-arrow left-arrow" id="prev">‹</div>
+   <div class="slider-arrow right-arrow" id="next">›</div>
+ </div>
+
+ <div class="product-right">
+
+   <h1 id="product-name"></h1>
+
+   <div class="desc-wrapper">
+     <p id="product-desc"></p>
+     <div class="read-more" id="read-more">Daha Fazla...</div>
+   </div>
+
+   <div class="sticky-btns">
+     <a id="offerBtn" class="btn gold" target="_blank">Teklif Al</a>
+     <a id="whatsappBtn" class="btn green" target="_blank">WhatsApp İletişim</a>
+   </div>
+
+ </div>
+
 </div>
-</div>
-</div>
+
+</main>
+
 
 <script>
-const id=new URLSearchParams(location.search).get('id');
+
+/* ===== PRODUCTS LOAD ===== */
+let products=[];
 
 fetch('product.json')
 .then(r=>r.json())
 .then(d=>{
-const p=d.find(x=>x.id==id);
-
-img.src=p.image;
-name.innerText=p.name;
-
-let txt=p.description;
-descShort.innerText=txt.slice(0,120);
-descFull.innerText=txt.slice(120);
+ products=d;
+ populateCategories();
+ initProduct();
 });
 
-function toggle(){
-descFull.classList.toggle('hidden');
+/* dropdown */
+function populateCategories(){
+ const drop=document.getElementById("dropdown");
+ [...new Set(products.map(p=>p.cat))].forEach(cat=>{
+   drop.innerHTML+=`<div onclick="location='index.html'">${cat}</div>`;
+ });
 }
+
+/* init product */
+function initProduct(){
+
+ const params=new URLSearchParams(window.location.search);
+ const id=parseInt(params.get("id"));
+ const p=products.find(x=>x.id===id);
+
+ if(!p) return;
+
+ let index=0;
+
+ const img=document.getElementById("product-img");
+ img.src=p.images[0];
+
+ document.getElementById("product-name").innerText=p.name;
+ document.getElementById("product-desc").innerText=p.desc;
+
+ const link="https://wa.me/905000000000?text="+encodeURIComponent(p.name+" için teklif almak istiyorum");
+ offerBtn.href=link;
+ whatsappBtn.href=link;
+
+ prev.onclick=()=>{index=(index-1+p.images.length)%p.images.length;img.src=p.images[index];}
+ next.onclick=()=>{index=(index+1)%p.images.length;img.src=p.images[index];}
+
+ /* read more */
+ let expanded=false;
+ read-more.onclick=()=>{}
+}
+
+/* read more fix */
+const desc=document.getElementById("product-desc");
+const readBtn=document.getElementById("read-more");
+let open=false;
+readBtn.onclick=()=>{
+ open=!open;
+ desc.classList.toggle("expanded");
+ readBtn.innerText=open?"Daha Az Göster":"Daha Fazla...";
+};
+
+/* anim */
+gsap.from(".product-left",{x:-80,opacity:0,duration:1});
+gsap.from(".product-right",{x:80,opacity:0,duration:1,delay:.2});
+
 </script>
 
 </body>
