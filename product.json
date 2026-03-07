@@ -1,23 +1,93 @@
 [
-  {
-    "id": 1,
-    "name": "AeroPods X",
-    "cat": "KULAKLIK",
-    "images": [
-      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad",
-      "https://images.unsplash.com/photo-1599058917210-5b6d1212e2b1",
-      "https://images.unsplash.com/photo-1600185369831-9d3e01b7b0a0"
-    ],
-    "desc": "Aktif gürültü engelleme ve uzun pil ömrü ile premium bir kulaklık deneyimi sunar. Bluetooth 5.2 ile hızlı bağlantı, ergonomik tasarım ve yüksek kaliteli ses performansı sağlar. Gürültü engelleme modları sayesinde tüm ortam seslerini kontrol edebilirsiniz. Dahili mikrofon ve kontrol tuşlarıyla rahat kullanım. Kendi kulak pedleri değiştirilebilir ve taşıma çantası ile birlikte gelir."
-  },
-  {
-    "id": 2,
-    "name": "Nova Watch Pro",
-    "cat": "AKILLI SAAT",
-    "images": [
-      "https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1",
-      "https://images.unsplash.com/photo-1549924231-f129b911e442"
-    ],
-    "desc": "Amoled ekran, uzun pil ömrü ve sağlık takip özellikleri ile öne çıkan bir akıllı saat. Nabız ölçer, uyku takibi, adım sayacı ve spor modları bulunur. Suya dayanıklı gövdesi sayesinde her ortamda güvenle kullanılabilir. Bildirimleri telefon ile senkronize edebilir, müzik kontrolünü kolaylıkla yapabilirsiniz."
-  }
+{
+"id":1,
+"name":"Akıllı Saat Pro X",
+"cat":"AKILLI SAAT",
+
+"images":[
+"images/watch/watch1.jpg",
+"images/watch/watch2.jpg",
+"images/watch/watch3.jpg"
+],
+
+"desc":"Premium tasarıma sahip akıllı saat. Sağlık takibi, spor modları ve uzun pil ömrü sunar.",
+
+"isNew":true,
+
+"price":2499,
+
+"features":[
+"1.9 inç AMOLED ekran",
+"7 gün pil ömrü",
+"Bluetooth arama",
+"IP68 su geçirmez"
+],
+
+"specs":{
+"ekran":"1.9 AMOLED",
+"batarya":"320mAh",
+"bluetooth":"5.2"
+}
+},
+
+{
+"id":2,
+"name":"Kablosuz Kulaklık AirSound",
+"cat":"KULAKLIK",
+
+"images":[
+"images/headphone/h1.jpg",
+"images/headphone/h2.jpg",
+"images/headphone/h3.jpg"
+],
+
+"desc":"Gürültü engelleme özellikli premium bluetooth kulaklık.",
+
+"isNew":true,
+
+"price":1199,
+
+"features":[
+"Aktif gürültü engelleme",
+"30 saat pil",
+"Bluetooth 5.3",
+"Hızlı şarj"
+],
+
+"specs":{
+"batarya":"400mAh",
+"bluetooth":"5.3",
+"mesafe":"10m"
+}
+},
+
+{
+"id":3,
+"name":"Powerbank 20000mAh",
+"cat":"POWERBANK",
+
+"images":[
+"images/powerbank/p1.jpg",
+"images/powerbank/p2.jpg"
+],
+
+"desc":"Yüksek kapasiteli hızlı şarj powerbank.",
+
+"isNew":false,
+
+"price":699,
+
+"features":[
+"20000mAh kapasite",
+"Hızlı şarj",
+"USB-C giriş",
+"2 cihaz aynı anda"
+],
+
+"specs":{
+"kapasite":"20000mAh",
+"cikis":"2x USB",
+"agirlik":"420g"
+}
+}
 ]
