@@ -24,8 +24,7 @@ body{
  padding-top:90px;
 }
 
-
-/* ================= HEADER ================= */
+/* HEADER */
 
 header{
  position:fixed;
@@ -73,7 +72,6 @@ header{
  color:var(--gold);
 }
 
-
 /* dropdown */
 
 .dropdown{
@@ -105,25 +103,13 @@ header{
  color:var(--gold);
 }
 
-.dropdown::-webkit-scrollbar{
- width:6px;
-}
-.dropdown::-webkit-scrollbar-thumb{
- background:rgba(0,0,0,.25);
- border-radius:10px;
-}
-
-
-/* search */
-
 .search{
  border:1px solid #ddd;
  padding:8px 14px;
  border-radius:20px;
 }
 
-
-/* ================= BREADCRUMB ================= */
+/* BREADCRUMB */
 
 .breadcrumb{
  max-width:1200px;
@@ -132,8 +118,7 @@ header{
  color:#777;
 }
 
-
-/* ================= PRODUCT ================= */
+/* PRODUCT */
 
 .product-wrapper{
  max-width:1200px;
@@ -177,9 +162,6 @@ header{
  display:none;
 }
 
-
-/* buttons */
-
 .btn{
  padding:14px 26px;
  border-radius:30px;
@@ -198,9 +180,6 @@ header{
  background:#25d366;
  color:white;
 }
-
-
-/* sticky */
 
 .sticky-buttons{
  position:fixed;
@@ -229,9 +208,6 @@ header{
 
 <body>
 
-
-<!-- ================= HEADER ================= -->
-
 <header>
  <div class="nav-inner">
 
@@ -240,24 +216,10 @@ header{
    </a>
 
    <div class="menu">
-
-     <div class="menu-item">Kategoriler
-       <div class="dropdown">
-         <div>Akıllı Saat</div>
-         <div>Kulaklık</div>
-         <div>Powerbank</div>
-         <div>Tablet</div>
-         <div>Aksesuar</div>
-         <div>Hoparlör</div>
-         <div>Kamera</div>
-         <div>Şarj Cihazı</div>
-       </div>
-     </div>
-
+     <div class="menu-item">Kategoriler</div>
      <div class="menu-item">NEW</div>
      <div class="menu-item">Ürün Ara</div>
      <div class="menu-item">Hakkımızda</div>
-
    </div>
 
    <input class="search" placeholder="Ürün ara..."/>
@@ -265,29 +227,21 @@ header{
  </div>
 </header>
 
-
-<!-- ================= BREADCRUMB ================= -->
-
 <div class="breadcrumb">
  Ana Sayfa / Ürünler / Ürün Detay
 </div>
 
-
-<!-- ================= PRODUCT ================= -->
-
 <div class="product-wrapper">
 
- <img src="https://picsum.photos/600/600" class="product-img">
+ <img id="product-img" class="product-img">
 
  <div class="product-info">
 
-   <h1>Premium Akıllı Saat</h1>
+   <h1 id="product-name"></h1>
 
    <p class="product-desc">
-     Yüksek kalite ekran ve premium tasarım.
-     <span class="more-text">
-     Uzun pil ömrü, spor modları, sağlık takibi, su geçirmezlik ve daha fazlası ile günlük kullanım için mükemmel çözüm.
-     </span>
+     <span id="product-desc"></span>
+     <span class="more-text" id="more-text"></span>
      <span class="more-btn" onclick="toggleMore()">Daha fazla...</span>
    </p>
 
@@ -298,30 +252,54 @@ header{
 
 </div>
 
-
-<!-- ================= STICKY ================= -->
-
 <div class="sticky-buttons">
  <a href="#">↑</a>
  <a href="#">☎</a>
 </div>
 
-
 <script>
-function toggleMore(){
- const text = document.querySelector('.more-text');
- const btn = document.querySelector('.more-btn');
 
- if(text.style.display === 'inline'){
-   text.style.display = 'none';
-   btn.innerText = 'Daha fazla...';
+function toggleMore(){
+ const text=document.querySelector('.more-text')
+ const btn=document.querySelector('.more-btn')
+
+ if(text.style.display==="inline"){
+  text.style.display="none"
+  btn.innerText="Daha fazla..."
  }else{
-   text.style.display = 'inline';
-   btn.innerText = 'Daha az';
+  text.style.display="inline"
+  btn.innerText="Daha az"
  }
 }
-</script>
 
+/* JSON'DAN ÜRÜN ÇEKME */
+
+let products=[]
+
+fetch("product.json")
+.then(r=>r.json())
+.then(data=>{
+
+products=data
+
+const params=new URLSearchParams(window.location.search)
+const id=parseInt(params.get("id"))
+
+const p=products.find(x=>x.id===id)
+
+if(!p)return
+
+document.getElementById("product-img").src=p.images[0]
+document.getElementById("product-name").innerText=p.name
+
+const desc=p.desc.split(". ")
+
+document.getElementById("product-desc").innerText=desc[0]+". "
+document.getElementById("more-text").innerText=desc.slice(1).join(". ")
+
+})
+
+</script>
 
 </body>
 </html>
