@@ -72,37 +72,6 @@ header{
  color:var(--gold);
 }
 
-/* dropdown */
-
-.dropdown{
- position:absolute;
- top:80px;
- left:0;
- width:240px;
- background:white;
- border-radius:14px;
- box-shadow:0 10px 30px rgba(0,0,0,.15);
- max-height:240px;
- overflow-y:auto;
- display:none;
-}
-
-.menu-item:hover .dropdown,
-.dropdown:hover{
- display:block;
-}
-
-.dropdown div{
- padding:10px 16px;
- font-size:13px;
- cursor:pointer;
-}
-
-.dropdown div:hover{
- background:var(--soft);
- color:var(--gold);
-}
-
 .search{
  border:1px solid #ddd;
  padding:8px 14px;
@@ -127,6 +96,10 @@ header{
  gap:60px;
 }
 
+.slider{
+ position:relative;
+}
+
 .product-img{
  width:450px;
  border-radius:20px;
@@ -136,6 +109,23 @@ header{
 .product-img:hover{
  transform:scale(1.05);
 }
+
+.slide-btn{
+ position:absolute;
+ top:50%;
+ transform:translateY(-50%);
+ background:rgba(0,0,0,.4);
+ color:white;
+ border:none;
+ width:40px;
+ height:40px;
+ border-radius:50%;
+ cursor:pointer;
+ font-size:18px;
+}
+
+.prev{ left:10px }
+.next{ right:10px }
 
 .product-info{
  flex:1;
@@ -180,6 +170,49 @@ header{
  background:#25d366;
  color:white;
 }
+
+/* FEATURES */
+
+.features{
+ max-width:1200px;
+ margin:60px auto;
+}
+
+.features h2{
+ margin-bottom:15px;
+}
+
+.features ul{
+ padding-left:20px;
+}
+
+.features li{
+ margin-bottom:8px;
+}
+
+/* SPECS */
+
+.specs{
+ max-width:1200px;
+ margin:40px auto;
+}
+
+.specs table{
+ width:100%;
+ border-collapse:collapse;
+}
+
+.specs td{
+ border-bottom:1px solid #eee;
+ padding:10px;
+}
+
+.specs td:first-child{
+ font-weight:bold;
+ width:200px;
+}
+
+/* sticky */
 
 .sticky-buttons{
  position:fixed;
@@ -233,31 +266,58 @@ header{
 
 <div class="product-wrapper">
 
- <img id="product-img" class="product-img">
+<div class="slider">
 
- <div class="product-info">
+<button class="slide-btn prev" onclick="prevImg()">‹</button>
 
-   <h1 id="product-name"></h1>
+<img id="product-img" class="product-img">
 
-   <p class="product-desc">
-     <span id="product-desc"></span>
-     <span class="more-text" id="more-text"></span>
-     <span class="more-btn" onclick="toggleMore()">Daha fazla...</span>
-   </p>
+<button class="slide-btn next" onclick="nextImg()">›</button>
 
-   <button class="btn offer">Teklif Al</button>
-   <button class="btn whatsapp">WhatsApp</button>
+</div>
 
- </div>
+<div class="product-info">
+
+<h1 id="product-name"></h1>
+
+<p class="product-desc">
+<span id="product-desc"></span>
+<span class="more-text" id="more-text"></span>
+<span class="more-btn" onclick="toggleMore()">Daha fazla...</span>
+</p>
+
+<button class="btn offer">Teklif Al</button>
+<button class="btn whatsapp">WhatsApp</button>
+
+</div>
+
+</div>
+
+<div class="features">
+
+<h2>Özellikler</h2>
+<ul id="feature-list"></ul>
+
+</div>
+
+<div class="specs">
+
+<h2>Teknik Özellikler</h2>
+
+<table id="spec-table"></table>
 
 </div>
 
 <div class="sticky-buttons">
- <a href="#">↑</a>
- <a href="#">☎</a>
+<a href="#">↑</a>
+<a href="#">☎</a>
 </div>
 
 <script>
+
+let products=[]
+let currentImages=[]
+let currentIndex=0
 
 function toggleMore(){
  const text=document.querySelector('.more-text')
@@ -272,9 +332,21 @@ function toggleMore(){
  }
 }
 
-/* JSON'DAN ÜRÜN ÇEKME */
+function showImg(){
+ document.getElementById("product-img").src=currentImages[currentIndex]
+}
 
-let products=[]
+function nextImg(){
+ currentIndex++
+ if(currentIndex>=currentImages.length) currentIndex=0
+ showImg()
+}
+
+function prevImg(){
+ currentIndex--
+ if(currentIndex<0) currentIndex=currentImages.length-1
+ showImg()
+}
 
 fetch("product.json")
 .then(r=>r.json())
@@ -289,13 +361,48 @@ const p=products.find(x=>x.id===id)
 
 if(!p)return
 
-document.getElementById("product-img").src=p.images[0]
+currentImages=p.images
+showImg()
+
 document.getElementById("product-name").innerText=p.name
 
 const desc=p.desc.split(". ")
 
 document.getElementById("product-desc").innerText=desc[0]+". "
 document.getElementById("more-text").innerText=desc.slice(1).join(". ")
+
+
+// FEATURES
+
+const featureList=document.getElementById("feature-list")
+
+p.features.forEach(f=>{
+ const li=document.createElement("li")
+ li.innerText=f
+ featureList.appendChild(li)
+})
+
+
+// SPECS
+
+const specTable=document.getElementById("spec-table")
+
+for(let key in p.specs){
+
+ const row=document.createElement("tr")
+
+ const td1=document.createElement("td")
+ td1.innerText=key
+
+ const td2=document.createElement("td")
+ td2.innerText=p.specs[key]
+
+ row.appendChild(td1)
+ row.appendChild(td2)
+
+ specTable.appendChild(row)
+
+}
 
 })
 
